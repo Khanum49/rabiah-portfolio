@@ -10,6 +10,6 @@ This is my personal portfolio website, built using **Astro** and **Tailwind CSS*
 
 ## Tech Stack
 - **Frontend:** Astro, Tailwind CSS
-- **Deployment:** Vercel / GitHub Pages (static site)
+- **Deployment:** GitHub Pages (static site)
 - **Optional:** JavaScript for interactive components
 
