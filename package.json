@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --config astro.config.dev.mjs",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview preview --config astro.config.dev.mjs",
     "astro": "astro",
     "deploy": "gh-pages -d dist"
   },

@@ -3,9 +3,9 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
+// Development config - no base path
 export default defineConfig({
   site: 'https://khanum49.github.io',
-  base: '/rabiah-portfolio',
+  base: '/',
   integrations: [tailwind(), mdx()],
 });
