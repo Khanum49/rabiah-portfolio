@@ -1,0 +1,190 @@
+---
+title: "Inter-VLAN Routing Configuration"
+description: "How to configure Inter-VLAN routing using Router-on-a-Stick method in Packet Tracer"
+---
+
+# Introduction
+
+## Requirement
+
+How to configure Inter-VLAN routing using the Router-on-a-Stick method to enable communication between three departments (IT, Management, and HR) while maintaining network segmentation.
+
+## What is Inter-VLAN Routing?
+
+**Inter-VLAN routing** is a networking technique that enables communication between different Virtual LANs (VLANs) on the same physical network by using a router. It allows devices in separate VLANs to exchange data while keeping them logically isolated for security and network segmentation purposes. The router acts as a bridge between VLANs, forwarding traffic based on IP addresses and maintaining distinct broadcast domains for each VLAN.
+
+### Understanding VLANs
+
+VLANs (Virtual Local Area Networks) are logical segmentation of a physical network into multiple isolated networks within a switch. This segmentation enhances security, simplifies network management, and improves performance.
+
+**Key Features:**
+- **Security:** VLANs isolate traffic, reducing the risk of unauthorized access to sensitive data
+- **Broadcast Control:** VLANs limit the scope of broadcast traffic, preventing network congestion
+- **Logical Grouping:** Devices can communicate as if they were on the same physical network, regardless of their physical location
+
+### Why Inter-VLAN Routing is Needed
+
+When VLANs are created to segregate network traffic for security, performance, or organizational reasons, they operate as separate broadcast domains. This segregation prevents direct communication between devices located in different VLANs. Inter-VLAN routing bridges this gap, allowing devices in different VLANs to exchange data while maintaining the benefits of network segmentation.
+
+## Prerequisites
+
+Ensure that the following requirements are met before configuring Inter-VLAN routing:
+
+- Cisco Packet Tracer or physical Cisco equipment
+- Basic understanding of IP addressing and subnetting
+- Access to router and switch configuration mode
+
+## Lab Scenario
+
+In this lab, we are creating a network using Inter-VLAN routing with the Router-on-a-Stick method having three departments:
+
+1. **IT Department** - VLAN 20 (192.168.10.0/24)
+2. **Management Department** - VLAN 40 (192.168.20.0/24)
+3. **HR Department** - VLAN 60 (192.168.30.0/24)
+
+<div class="my-6">
+  <img src="/images/inter-vlan/network-diagram.png" alt="Inter-VLAN Routing Network Topology" class="max-w-full h-auto rounded shadow-md" />
+</div>
+
+## How to Configure Inter-VLAN Routing
+
+Follow the below step-by-step guide to configure Inter-VLAN routing using the Router-on-a-Stick method:
+
+### Step 1. Configure VLANs on the Switch
+
+1. Access the switch configuration mode:
+
+   ```bash
+   Switch> enable
+   Switch# configure terminal
+   ```
+
+2. Create the three VLANs:
+
+   ```bash
+   Switch(config)# vlan 20
+   Switch(config-vlan)# name IT_Department
+   Switch(config-vlan)# exit
+   
+   Switch(config)# vlan 40
+   Switch(config-vlan)# name Management_Department
+   Switch(config-vlan)# exit
+   
+   Switch(config)# vlan 60
+   Switch(config-vlan)# name HR_Department
+   Switch(config-vlan)# exit
+   ```
+
+### Step 2. Assign Switch Ports to VLANs
+
+1. Assign access ports to their respective VLANs. For example, to assign ports for the IT Department:
+
+   ```bash
+   Switch(config)# interface range fa0/1-3
+   Switch(config-if-range)# switchport mode access
+   Switch(config-if-range)# switchport access vlan 20
+   Switch(config-if-range)# exit
+   ```
+
+2. Repeat for Management Department (VLAN 40) and HR Department (VLAN 60) on their designated ports.
+
+### Step 3. Configure Trunk Port to Router
+
+1. Configure the port connecting to the router as a trunk port to carry traffic for all VLANs:
+
+   ```bash
+   Switch(config)# interface fa0/4
+   Switch(config-if)# switchport mode trunk
+   Switch(config-if)# exit
+   ```
+
+### Step 4. Configure Router Subinterfaces
+
+1. Access the router and create subinterfaces for each VLAN:
+
+   ```bash
+   Router> enable
+   Router# configure terminal
+   ```
+
+2. Configure subinterface for VLAN 20 (IT Department):
+
+   ```bash
+   Router(config)# interface fa0/0.20
+   Router(config-subif)# encapsulation dot1Q 20
+   Router(config-subif)# ip address 192.168.10.1 255.255.255.0
+   Router(config-subif)# exit
+   ```
+
+3. Configure subinterface for VLAN 40 (Management Department):
+
+   ```bash
+   Router(config)# interface fa0/0.40
+   Router(config-subif)# encapsulation dot1Q 40
+   Router(config-subif)# ip address 192.168.20.1 255.255.255.0
+   Router(config-subif)# exit
+   ```
+
+4. Configure subinterface for VLAN 60 (HR Department):
+
+   ```bash
+   Router(config)# interface fa0/0.60
+   Router(config-subif)# encapsulation dot1Q 60
+   Router(config-subif)# ip address 192.168.30.1 255.255.255.0
+   Router(config-subif)# exit
+   ```
+
+5. Enable the physical interface:
+
+   ```bash
+   Router(config)# interface fa0/0
+   Router(config-if)# no shutdown
+   Router(config-if)# exit
+   ```
+
+### Step 5. Configure End Devices
+
+1. Configure each PC with an IP address in its respective VLAN subnet:
+   - IT Department PCs: 192.168.10.x with gateway 192.168.10.1
+   - Management Department PCs: 192.168.20.x with gateway 192.168.20.1
+   - HR Department PCs: 192.168.30.x with gateway 192.168.30.1
+
+### Step 6. Verify the Configuration
+
+1. Test connectivity between devices in the same VLAN:
+
+   ```bash
+   PC> ping 192.168.10.2
+   ```
+
+2. Test Inter-VLAN routing by pinging a device in a different VLAN:
+
+   ```bash
+   PC> ping 192.168.20.2
+   ```
+
+3. Verify VLAN configuration on the switch:
+
+   ```bash
+   Switch# show vlan brief
+   ```
+
+4. Verify router subinterfaces:
+
+   ```bash
+   Router# show ip interface brief
+   ```
+
+## Benefits of Inter-VLAN Routing
+
+1. **Efficient Traffic Flow:** Inter-VLAN routing ensures efficient data flow between VLANs, minimizing unnecessary broadcast traffic and network congestion
+
+2. **Enhanced Security:** VLANs remain isolated from each other by default, maintaining security while enabling controlled communication between segments
+
+3. **Optimized Performance:** Devices in different VLANs can access shared resources while maintaining network performance
+
+4. **Simplified Network Management:** Logical segmentation makes it easier to manage and troubleshoot network issues
+
+## Conclusion
+
+Inter-VLAN routing using the Router-on-a-Stick method provides an effective way to enable communication between different network segments while maintaining security and performance. This configuration is ideal for small to medium-sized networks with limited inter-VLAN traffic requirements. By following this guide, you can successfully implement Inter-VLAN routing to support departmental segmentation while allowing necessary communication across your network.

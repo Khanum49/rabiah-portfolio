@@ -1,0 +1,168 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all documentation entries
+const allDocs = await getCollection('docs');
+
+// Sort docs in the desired order
+const sortedDocs = allDocs.sort((a, b) => {
+  const order = ['linux-firewall', 'inter-vlan', 'esp32-overview', 'stm32-arm-cortex', 'rtos-vs-bare-metal'];
+  return order.indexOf(a.slug) - order.indexOf(b.slug);
+});
+
+// Get current page slug from URL
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title="Documentation — Rabiah Khanum">
+  <div class="docs-layout max-w-7xl mx-auto px-6 pt-28">
+    <div class="flex gap-8">
+      
+      <!-- Left Sidebar - Navigation -->
+      <aside class="w-64 shrink-0 hidden lg:block">
+        <nav class="sticky top-32 bg-gradient-to-br from-teal-50/80 to-blue-50/80 rounded-2xl p-6 border border-teal-100/50 shadow-sm">
+          <h3 class="text-xs font-semibold text-teal-700 uppercase tracking-wider mb-4">Navigation</h3>
+          <div class="space-y-2 text-sm">
+            <a 
+              href="/docs" 
+              class="block py-2 px-3 rounded-lg transition-all"
+              class:list={[
+                currentPath === '/docs' || currentPath === '/docs/' 
+                  ? 'bg-teal-100 text-teal-700 font-semibold' 
+                  : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
+              ]}
+            >
+              Documentation Home
+            </a>
+            
+            {sortedDocs.map((doc) => (
+              <a 
+                href={`/docs/${doc.slug}`}
+                class="block py-2 px-3 rounded-lg transition-all"
+                class:list={[
+                  currentPath.includes(`/docs/${doc.slug}`)
+                    ? 'bg-teal-100 text-teal-700 font-semibold'
+                    : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
+                ]}
+              >
+                {doc.data.title}
+              </a>
+            ))}
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 min-w-0">
+        <slot />
+      </main>
+
+      <!-- Right Sidebar - Table of Contents -->
+      <aside class="w-56 shrink-0 hidden xl:block">
+        <nav class="sticky top-32 text-sm">
+          <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">On This Page</h3>
+          <div id="toc" class="space-y-2">
+            <!-- Table of contents will be populated by JavaScript -->
+          </div>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Generate table of contents from page headings
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocContainer = document.getElementById('toc');
+    if (!tocContainer) return;
+
+    // Get all h2 and h3 headings from the main content
+    const article = document.querySelector('article');
+    if (!article) return;
+
+    const headings = article.querySelectorAll('h2, h3');
+    
+    if (headings.length === 0) {
+      tocContainer.innerHTML = '<p class="text-slate-400 text-xs">No headings found</p>';
+      return;
+    }
+
+    headings.forEach((heading, index) => {
+      // Create an ID for the heading if it doesn't have one
+      if (!heading.id) {
+        heading.id = `heading-${index}`;
+      }
+
+      const link = document.createElement('a');
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent || '';
+      link.className = 'block py-1.5 text-slate-600 hover:text-teal-600 transition-colors border-l-2 border-transparent hover:border-teal-400';
+      
+      // Indent h3 headings
+      if (heading.tagName === 'H3') {
+        link.className += ' pl-4 text-xs';
+      } else {
+        link.className += ' pl-2 font-medium';
+      }
+
+      // Highlight active section
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(heading.id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Update URL without triggering page reload
+          history.pushState(null, '', `#${heading.id}`);
+        }
+      });
+
+      tocContainer.appendChild(link);
+    });
+
+    // Highlight current section on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const tocLink = tocContainer.querySelector(`a[href="#${id}"]`);
+          
+          if (entry.isIntersecting && tocLink) {
+            // Remove active class from all links
+            tocContainer.querySelectorAll('a').forEach(link => {
+              link.classList.remove('text-teal-600', 'border-teal-600', 'font-semibold');
+              link.classList.add('text-slate-600', 'border-transparent');
+            });
+            
+            // Add active class to current link
+            tocLink.classList.remove('text-slate-600', 'border-transparent');
+            tocLink.classList.add('text-teal-600', 'border-teal-600', 'font-semibold');
+          }
+        });
+      },
+      { rootMargin: '-100px 0px -80% 0px' }
+    );
+
+    headings.forEach((heading) => {
+      observer.observe(heading);
+    });
+  });
+</script>
+
+<style>
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Style for the main content area to ensure proper spacing */
+  main article {
+    scroll-margin-top: 2rem;
+  }
+
+  main article h2,
+  main article h3 {
+    scroll-margin-top: 6rem;
+  }
+</style>
