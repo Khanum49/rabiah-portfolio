@@ -5,6 +5,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -22,16 +23,16 @@ const { title } = Astro.props;
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-brand-group">
-                <a href="/" class="nav-brand-wrapper">
+                <a href={base} class="nav-brand-wrapper">
                     <span class="nav-brand">Rabiah Khanum</span>
                 </a>
                 
                 <div class="internal-links">
-                    <a href="/" class="nav-link-page">Home</a>
-                    <a href="/docs" class="nav-link-page">Docs</a>
-                    <a href="/api-docs" class="nav-link-page">API docs</a>
-                    <a href="/videos" class="nav-link-page">Videos</a>
-                    <a href="/writing" class="nav-link-page">Writing</a>
+                    <a href={base} class="nav-link-page">Home</a>
+                    <a href={`${base}docs`} class="nav-link-page">Docs</a>
+                    <a href={`${base}api-docs`} class="nav-link-page">API docs</a>
+                    <a href={`${base}videos`} class="nav-link-page">Videos</a>
+                    <a href={`${base}writing`} class="nav-link-page">Writing</a>
                 </div>
             </div>
 
@@ -66,8 +67,8 @@ const { title } = Astro.props;
             <div class="footer-section">
                 <h3>Writing Examples</h3>
                 <ul class="footer-links">
-                    <li><a href="/docs">API docs</a></li>
-                    <li><a href="/guides">Guides & How-tos</a></li>
+                    <li><a href={`${base}docs`}>API docs</a></li>
+                    <li><a href={`${base}guides`}>Guides & How-tos</a></li>
                 </ul>
             </div>
             <div class="footer-section">
