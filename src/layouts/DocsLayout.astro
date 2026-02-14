@@ -2,6 +2,21 @@
 import BaseLayout from './BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
+// Helper function to ensure proper path joining
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) {
+        part = part.slice(1);
+      }
+      if (index < parts.length - 1 && part.endsWith('/')) {
+        part = part.slice(0, -1);
+      }
+      return part;
+    })
+    .join('/');
+};
+
 // Get all documentation entries
 const allDocs = await getCollection('docs');
 
@@ -13,7 +28,7 @@ const sortedDocs = allDocs.sort((a, b) => {
 
 // Get current page slug from URL
 const currentPath = Astro.url.pathname;
-const base = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Documentation — Rabiah Khanum">
@@ -26,10 +41,10 @@ const base = import.meta.env.BASE_URL;
           <h3 class="text-xs font-semibold text-teal-700 uppercase tracking-wider mb-4">Navigation</h3>
           <div class="space-y-2 text-sm">
             <a 
-              href={`${base}docs`}
+              href={joinPath(baseUrl, 'docs')}
               class="block py-2 px-3 rounded-lg transition-all"
               class:list={[
-                currentPath === `${base}docs` || currentPath === `${base}docs/` 
+                currentPath === joinPath(baseUrl, 'docs') || currentPath === joinPath(baseUrl, 'docs/')
                   ? 'bg-teal-100 text-teal-700 font-semibold' 
                   : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
               ]}
@@ -39,7 +54,7 @@ const base = import.meta.env.BASE_URL;
             
             {sortedDocs.map((doc) => (
               <a 
-                href={`${base}docs/${doc.slug}`}
+                href={joinPath(baseUrl, 'docs', doc.slug)}
                 class="block py-2 px-3 rounded-lg transition-all"
                 class:list={[
                   currentPath.includes(`/${doc.slug}`)

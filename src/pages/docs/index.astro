@@ -1,7 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const base = import.meta.env.BASE_URL;
+// Helper function to ensure proper path joining
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) {
+        part = part.slice(1);
+      }
+      if (index < parts.length - 1 && part.endsWith('/')) {
+        part = part.slice(0, -1);
+      }
+      return part;
+    })
+    .join('/');
+};
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout>
@@ -33,7 +48,7 @@ const base = import.meta.env.BASE_URL;
         </ul>
         <div class="flex flex-wrap gap-4">
           <a 
-            href={`${base}docs/linux-firewall`}
+            href={joinPath(baseUrl, 'docs', 'linux-firewall')}
             class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl font-medium transition-colors shadow-md text-sm inline-block"
           >
             View Documentation
@@ -59,7 +74,7 @@ const base = import.meta.env.BASE_URL;
         </ul>
         <div class="flex flex-wrap gap-4">
           <a 
-            href={`${base}docs/inter-vlan`}
+            href={joinPath(baseUrl, 'docs', 'inter-vlan')}
             class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-colors shadow-md text-sm inline-block"
           >
             View Documentation
@@ -84,7 +99,7 @@ const base = import.meta.env.BASE_URL;
             <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Embedded Systems</span>
           </div>
           <a 
-            href={`${base}docs/esp32`}
+            href={joinPath(baseUrl, 'docs', 'esp32')}
             class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
           >
             Read Article
@@ -101,7 +116,7 @@ const base = import.meta.env.BASE_URL;
             <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Microcontrollers</span>
           </div>
           <a 
-            href={`${base}docs/stm32`}
+            href={joinPath(baseUrl, 'docs', 'stm32')}
             class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
           >
             Read Article
@@ -118,7 +133,7 @@ const base = import.meta.env.BASE_URL;
             <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Firmware</span>
           </div>
           <a 
-            href={`${base}docs/rtos-baremetal`}
+            href={joinPath(baseUrl, 'docs', 'rtos-baremetal')}
             class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
           >
             Read Article
@@ -173,7 +188,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="mt-12">
         <a 
-          href={base}
+          href={baseUrl}
           class="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center"
         >
           ← Back to Home
