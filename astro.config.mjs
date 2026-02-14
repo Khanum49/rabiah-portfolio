@@ -8,6 +8,7 @@ export default defineConfig({
   site: 'https://khanum49.github.io',
   // Use base path only in production (GitHub Pages)
   // Locally (dev), this will be '/' so paths work without prefix
-  base: process.env.NODE_ENV === 'production' ? '/rabiah-portfolio' : '/',
+  // Note: Astro's BASE_URL will automatically include trailing slash
+  base: process.env.NODE_ENV === 'production' ? '/rabiah-portfolio/' : '/',
   integrations: [tailwind(), mdx()],
 });
