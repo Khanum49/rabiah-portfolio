@@ -13,6 +13,7 @@ const sortedDocs = allDocs.sort((a, b) => {
 
 // Get current page slug from URL
 const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Documentation — Rabiah Khanum">
@@ -25,10 +26,10 @@ const currentPath = Astro.url.pathname;
           <h3 class="text-xs font-semibold text-teal-700 uppercase tracking-wider mb-4">Navigation</h3>
           <div class="space-y-2 text-sm">
             <a 
-              href="/docs" 
+              href={`${base}docs`}
               class="block py-2 px-3 rounded-lg transition-all"
               class:list={[
-                currentPath === '/docs' || currentPath === '/docs/' 
+                currentPath === `${base}docs` || currentPath === `${base}docs/` 
                   ? 'bg-teal-100 text-teal-700 font-semibold' 
                   : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
               ]}
@@ -38,10 +39,10 @@ const currentPath = Astro.url.pathname;
             
             {sortedDocs.map((doc) => (
               <a 
-                href={`/docs/${doc.slug}`}
+                href={`${base}docs/${doc.slug}`}
                 class="block py-2 px-3 rounded-lg transition-all"
                 class:list={[
-                  currentPath.includes(`/docs/${doc.slug}`)
+                  currentPath.includes(`/${doc.slug}`)
                     ? 'bg-teal-100 text-teal-700 font-semibold'
                     : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
                 ]}
