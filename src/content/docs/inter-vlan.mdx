@@ -3,6 +3,10 @@ title: "Inter-VLAN Routing Configuration"
 description: "How to configure Inter-VLAN routing using Router-on-a-Stick method in Packet Tracer"
 ---
 
+import { Image } from 'astro:assets';
+import networkDiagram from '../../assets/images/inter-vlan/network-diagram.png';
+
+
 # Introduction
 
 ## Requirement
@@ -43,7 +47,7 @@ In this lab, we are creating a network using Inter-VLAN routing with the Router-
 3. **HR Department** - VLAN 60 (192.168.30.0/24)
 
 <div class="my-6">
-  <img src="/images/inter-vlan/network-diagram.png" alt="Inter-VLAN Routing Network Topology" class="max-w-full h-auto rounded shadow-md" />
+  <Image src={networkDiagram} alt="Inter-VLAN Routing Network Topology" class="max-w-full h-auto rounded shadow-md" />
 </div>
 
 ## How to Configure Inter-VLAN Routing
