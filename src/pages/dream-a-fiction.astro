@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Dream a Fiction - Rabiah Khanum">
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+    <div class="max-w-4xl mx-auto px-6 py-16">
+      
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <a href={`${import.meta.env.BASE_URL}writing`} class="inline-flex items-center text-purple-600 hover:text-purple-700 mb-6 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Writing
+        </a>
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+          Dream a Fiction
+        </h1>
+        
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          A short story written in a few minutes for a friend collecting writing samples
+        </p>
+      </div>
+
+      <!-- Story Content -->
+      <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12 border border-slate-100">
+        <div class="prose prose-lg max-w-none">
+          <p class="text-slate-700 leading-relaxed">
+            Once upon a time, there were three friends, Rose, Hunter, and Dove. All were born in the far reaches of a desert, where provision was always scarce. Their friendship started with playing in the dirt of their home. Each morning, they would wake up, eat what little their parents could provide, as hunting was often done with weeks between them, and foraging only procured little edibles. Then they would all go to Dove's little hut, the small home usually sweltering in the summer heat, with only a rare, occasional, gentle breeze letting them breathe a little. At Dove's abode, they all read stories and sometimes were read to by her mother, a tall, kind woman with a gleam in her eyes. The stories they read were of big adventures with big words, which filled their heads with dreams bigger than their homes and larger than their lives. Hunter would always start fighting over those with sad endings, why the child in one couldn't save his pet, or why the princess's dragon died. Rose would never lose hope, creating a new, happier ending for him, saying that the child found another pet, that the princess found all the dragon's hoarded jewels, and went on another adventure. And then after the calm, they would all go run around and find imaginary monsters to slay.
+          </p>
+
+          <p class="text-slate-700 leading-relaxed">
+            But as they grew older with all the stories read and heard, they grew hungrier, with their dreams of seeing the world, they begged and begged and begged their parents to let them leave to explore the world. And after a dozen fights from the hunter and a million pleadings from dove and rose, they did leave. They trekked through the desert with the plans of reaching the north capital, the big city where all their dreams lie, with a million possibilities. The journey through the desert and then the greener lands was the toughest of their lives; it tested their bodies, minds, and hearts, it tested their friendship and there were days they went without food, but at last they finally reached the north capital where snow was starting, in soft gentle flakes, their faces stretched with big grins, they thought they had it all now they could open up a shop with stories they will sell and then they will upgrade and one after the other the success will just bow down at their feet, or so they thought, as this was when their lives actually had started.
+          </p>
+
+          <p class="text-slate-700 leading-relaxed">
+            These kids with big stars in their eyes would see the cruelty of the world that big; they would fight, they would fail, they would start their journey back towards home, halfway there, they would again turn back, tackle headfirst the city again, and this time nothing would break them. They would achieve their goals, and then they would open up a story shop, and this time they would not break nor their friendship, now gone through the test of time, more stronger, more firm, they would see a difficulty coming from miles away and stand resilient in front of it. Then their story shop would kick off, and people would flock to their doors, the bell above the door chiming consistently and they would expand and become a giant in the north capital, known by everyone as foreigners from a small world but big achievers and they would bring their parents to have them see the world they crafted of their own blood and tears. And in the end they would smile and give their children even bigger dreams. But before all that they had to understand where they started from and to never forget their roots.
+          </p>
+
+          <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 my-8">
+            <h3 class="text-xl font-semibold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+              Author's Note
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-3">
+              This is one of my dreams to write a book with a world completely of my own unique imagination, but I have filled my head with so many stories that whatever I think I will write will be an amalgamation of them. But I don't think I have any other advice besides that, never give up on your dream of writing a book.
+            </p>
+            <p class="text-slate-700 leading-relaxed mb-3">
+              Imagine something purely from your brain being left in this world forever, even after you are not in this world. You never know when something picks up hype. For example, Kafka's novels got recognition after his death and in his life nobody even cared and even all the classics fall under this sad category.
+            </p>
+            <p class="text-slate-700 leading-relaxed font-medium">
+              In short, even if it takes years never stop writing.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Back Button -->
+      <div class="text-center">
+        <a 
+          href={`${import.meta.env.BASE_URL}writing`}
+          class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Writing
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  article {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
