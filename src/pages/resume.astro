@@ -1,0 +1,610 @@
+---
+// src/pages/resume.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) part = part.slice(1);
+      if (index < parts.length - 1 && part.endsWith('/')) part = part.slice(0, -1);
+      return part;
+    })
+    .join('/');
+};
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Resume — Rabiah Khanum">
+  <div class="resume-wrapper">
+    <div class="resume-container">
+
+      <!-- Top bar: back link + download -->
+      <div class="resume-topbar">
+        <a href={joinPath(baseUrl, 'about')} class="back-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H6.612l3.158 3.96a.75.75 0 1 1-1.04 1.08l-4.5-4.25a.75.75 0 0 1 0-1.08l4.5-4.25a.75.75 0 1 1 1.04 1.08L6.612 9.25H16.25A.75.75 0 0 1 17 10Z" clip-rule="evenodd"/>
+          </svg>
+          Back to About Me
+        </a>
+        <a href={`${baseUrl}cv/CV_Rabiah_Khanum_Main_.pdf`} download class="download-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z"/>
+            <path d="M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z"/>
+          </svg>
+          Download PDF
+        </a>
+      </div>
+
+      <!-- CV Card -->
+      <div class="cv-card" style="animation: fadeInUp 0.7s ease-out;">
+
+        <!-- Header -->
+        <header class="cv-header">
+          <div class="cv-header-text">
+            <h1 class="cv-name">Rabiah Khanum</h1>
+            <p class="cv-title">Technical Writer & Documentation Engineer</p>
+            <div class="cv-contact-row">
+              <span>+92 315 8217968</span>
+              <span class="dot">·</span>
+              <a href="mailto:khanumrabiah@gmail.com">khanumrabiah@gmail.com</a>
+              <span class="dot">·</span>
+              <a href="https://www.linkedin.com/in/rabiahkhanum2049/" target="_blank">LinkedIn</a>
+              <span class="dot">·</span>
+              <span>Islamabad, Pakistan</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="cv-body">
+
+          <!-- Profile -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Profile</h2>
+            <p class="cv-prose">
+              Electrical Engineer turned Documentation Engineer specialising in docs-as-code workflows, automation, and AI-ready documentation for SaaS and cloud companies. Built Python pipelines cutting build time from days to minutes, managed 2 simultaneous client accounts, and conducted primary research with 70+ technical writers across the US and Europe. Currently advancing API documentation expertise through Postman's API Documentation Path.
+            </p>
+          </section>
+
+          <!-- Work Experience -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Work Experience</h2>
+
+            <div class="cv-job">
+              <div class="cv-job-header">
+                <div>
+                  <span class="cv-job-title">Technical Writer</span>
+                  <span class="cv-job-sep">·</span>
+                  <a href="https://xgrid.co" target="_blank" class="cv-job-company">Xgrid.co</a>
+                </div>
+                <span class="cv-job-date">Dec 2024 – Ongoing</span>
+              </div>
+              <ul class="cv-bullets">
+                <li>Engineered a Python Docs-as-Code pipeline using an open-source Python library (rstdoc) and GitHub Actions, cutting build time from <strong>days to minutes</strong> and eliminating manual RST file creation across the full content lifecycle</li>
+                <li>Built live interactive features inside client documentation: a Python feedback button routing reader input to Jira via Slack webhooks, and a JavaScript/CSS copy-link button embedded in RST troubleshooting tables for instant cross-team alert sharing</li>
+                <li>Restructured documentation for AI chatbot readability by implementing metadata layers, structured summaries, and conclusion sections; independently researched Neo4j knowledge graphs and Sphinx meta directives for stronger information retrieval</li>
+                <li>Customised client-facing Sphinx themes using HTML, CSS, and JavaScript, delivering branded developer portals aligned to client standards</li>
+                <li>Managed documentation across <strong>2</strong> simultaneous client accounts — cloud networking and data analytics — within weekly sprint cycles and zero-error-margin standards</li>
+                <li>Produced <strong>10–15</strong> internal onboarding guides across Power BI, Tableau, and HubSpot, and <strong>4–5</strong> executive pitch decks for client summits</li>
+                <li>Built automation workflows using Zapier, Apollo, Clay, and Apify: <strong>25+</strong> prospect research lists (200–5,000 contacts each), automated Slack/email notification pipelines, and campaign and audit documentation</li>
+                <li>Conducted primary industry research via <strong>71</strong> survey responses and <strong>7</strong> video interviews with senior technical writers across the US and Europe on AI adoption in documentation</li>
+                <li>Actively participated in the full SDLC: requirements gathering, sprint planning, release documentation, and post-release updates</li>
+              </ul>
+            </div>
+
+            <div class="cv-job">
+              <div class="cv-job-header">
+                <div>
+                  <span class="cv-job-title">Technical Writer Intern</span>
+                  <span class="cv-job-sep">·</span>
+                  <a href="https://xgrid.co" target="_blank" class="cv-job-company">Xgrid.co</a>
+                </div>
+                <span class="cv-job-date">Sep 2024 – Dec 2024</span>
+              </div>
+              <ul class="cv-bullets">
+                <li>Authored developer-facing documentation for a US-based cloud networking client using Sphinx, reStructuredText, and GitHub within a docs-as-code workflow, delivering iterative updates aligned with weekly engineering sprints</li>
+                <li>Documented Cisco PoC tools and cEdge networking solutions, translating complex networking concepts including routing, switching, TCP/IP, and VPN configurations into clear, task-oriented technical content</li>
+                <li>Managed direct client communication with a US-based cloud networking team across weekly sprint meetings, triaging open documentation tickets and realigning deliverables with real-time engineering changes</li>
+                <li>Created architecture diagrams and process flowcharts using Draw.io to support technical documentation and stakeholder presentations</li>
+              </ul>
+            </div>
+
+            <div class="cv-job">
+              <div class="cv-job-header">
+                <div>
+                  <span class="cv-job-title">IP Core Intern</span>
+                  <span class="cv-job-sep">·</span>
+                  <span class="cv-job-company-plain">Pakistan Telecommunication Company Ltd.</span>
+                </div>
+                <span class="cv-job-date">July 2023 – Sep 2023</span>
+              </div>
+              <ul class="cv-bullets">
+                <li>Gained hands-on experience with OSI model, TCP/IP stack, IPv4/IPv6, subnetting, and core ISP operations, building domain knowledge directly applicable to cloud networking documentation</li>
+                <li>Designed and tested virtual network topologies and core services including DHCP, DNS, routing, and switching in lab environments</li>
+                <li>Documented network workflows, configurations, and troubleshooting scenarios, developing the technical depth needed to write accurately for engineering audiences</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Two-column: Education + Skills -->
+          <div class="cv-two-col">
+
+            <section class="cv-section">
+              <h2 class="cv-section-title">Education</h2>
+
+              <div class="cv-edu-item">
+                <p class="cv-edu-degree">BSc. Electrical Engineering</p>
+                <p class="cv-edu-school">University of Engineering & Technology Taxila, Pakistan</p>
+                <p class="cv-edu-meta">Aug 2020 – July 2024 · CGPA: 3.31/4.00</p>
+              </div>
+              <div class="cv-edu-item">
+                <p class="cv-edu-degree">Intermediate (Pre-Engineering)</p>
+                <p class="cv-edu-school">Army Public School and College, Kharian Cantt</p>
+                <p class="cv-edu-meta">2018 – 2020 · Grade: A (87.64%)</p>
+              </div>
+              <div class="cv-edu-item">
+                <p class="cv-edu-degree">Matriculation (Science)</p>
+                <p class="cv-edu-school">Army Public School and College, Kharian Cantt</p>
+                <p class="cv-edu-meta">2016 – 2018 · Grade: A (94.64%)</p>
+              </div>
+            </section>
+
+            <section class="cv-section">
+              <h2 class="cv-section-title">Languages</h2>
+              <div class="cv-lang-list">
+                <div class="cv-lang-item">
+                  <span class="cv-lang-name">English</span>
+                  <span class="cv-lang-level">Full professional · IELTS Band 8</span>
+                </div>
+                <div class="cv-lang-item">
+                  <span class="cv-lang-name">Urdu</span>
+                  <span class="cv-lang-level">Native or bilingual</span>
+                </div>
+                <div class="cv-lang-item">
+                  <span class="cv-lang-name">Punjabi</span>
+                  <span class="cv-lang-level">Native or bilingual</span>
+                </div>
+                <div class="cv-lang-item">
+                  <span class="cv-lang-name">Finnish</span>
+                  <span class="cv-lang-level">Elementary</span>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Technical Expertise -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Technical Expertise</h2>
+            <div class="cv-skills-grid">
+              <div class="cv-skill-group">
+                <p class="cv-skill-group-title">Documentation & APIs</p>
+                <div class="cv-tags">
+                  <span class="tag">Sphinx (RST)</span>
+                  <span class="tag">Confluence</span>
+                  <span class="tag">Docs-as-Code</span>
+                  <span class="tag">GitHub</span>
+                  <span class="tag">VS Code</span>
+                  <span class="tag">Postman</span>
+                  <span class="tag">REST APIs</span>
+                  <span class="tag">Draw.io</span>
+                  <span class="tag">LucidChart</span>
+                  <span class="tag">Canva</span>
+                </div>
+              </div>
+              <div class="cv-skill-group">
+                <p class="cv-skill-group-title">Automation & Web</p>
+                <div class="cv-tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">GitHub Actions</span>
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">Zapier</span>
+                  <span class="tag">Apollo</span>
+                  <span class="tag">Clay</span>
+                  <span class="tag">Apify</span>
+                  <span class="tag">Markdown</span>
+                  <span class="tag">YAML</span>
+                </div>
+              </div>
+              <div class="cv-skill-group">
+                <p class="cv-skill-group-title">Domain Knowledge</p>
+                <div class="cv-tags">
+                  <span class="tag">Multi-cloud Networking</span>
+                  <span class="tag">Azure VNets</span>
+                  <span class="tag">AWS</span>
+                  <span class="tag">GCP</span>
+                  <span class="tag">TCP/IP</span>
+                  <span class="tag">IPv4/IPv6</span>
+                  <span class="tag">DNS & DHCP</span>
+                  <span class="tag">Neo4j</span>
+                  <span class="tag">LLMs</span>
+                  <span class="tag">AI workflows</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Certificates -->
+          <section class="cv-section">
+            <h2 class="cv-section-title">Certificates & Training</h2>
+            <div class="cv-cert-grid">
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">API Documentation Path</span>
+                <span class="cv-cert-org">Postman Academy · Ongoing</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Building Knowledge Graphs with LLMs</span>
+                <span class="cv-cert-org">Neo4j Graph Academy · Feb 2026</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">AI Fluency: Framework & Foundations</span>
+                <span class="cv-cert-org">Anthropic Education · Jan 2026</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Network Addressing and Troubleshooting</span>
+                <span class="cv-cert-org">Cisco Networking Academy · May 2025</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Aspire Leaders Program</span>
+                <span class="cv-cert-org">Harvard Aspire Institute · Nov 2024</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Microsoft Azure Course</span>
+                <span class="cv-cert-org">Great Learning Academy · Aug 2024</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Huawei Seeds for the Future — Cloud Computing</span>
+                <span class="cv-cert-org">Huawei · Aug 2024</span>
+              </div>
+              <div class="cv-cert-item">
+                <span class="cv-cert-name">Networking Basics</span>
+                <span class="cv-cert-org">Cisco Networking Academy · June 2024</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .resume-wrapper {
+    min-height: 100vh;
+    padding: 6rem 1.25rem 3rem;
+  }
+
+  .resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── Top bar ── */
+  .resume-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #0d9488;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.75; }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0d9488;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 99px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .download-btn:hover {
+    background: #0f766e;
+    transform: translateY(-1px);
+  }
+
+  /* ── CV Card ── */
+  .cv-card {
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 48px rgba(13,148,136,0.07), 0 2px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .cv-header {
+    background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+    padding: 2.5rem 2.5rem 2rem;
+    color: #fff;
+  }
+
+  .cv-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+  }
+
+  .cv-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+
+  .cv-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+
+  .cv-contact-row a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .dot { opacity: 0.5; }
+
+  /* ── Body ── */
+  .cv-body {
+    padding: 2rem 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* ── Section ── */
+  .cv-section { display: flex; flex-direction: column; gap: 1rem; }
+
+  .cv-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0d9488;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid #ccfbf1;
+  }
+
+  .cv-prose {
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.75;
+  }
+
+  /* ── Job ── */
+  .cv-job { display: flex; flex-direction: column; gap: 0.6rem; }
+  .cv-job + .cv-job { padding-top: 1.25rem; border-top: 1px solid #f1f5f9; }
+
+  .cv-job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .cv-job-title {
+    font-size: 0.925rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .cv-job-sep { color: #94a3b8; margin: 0 0.25rem; }
+
+  .cv-job-company {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0d9488;
+    text-decoration: none;
+  }
+  .cv-job-company:hover { text-decoration: underline; }
+
+  .cv-job-company-plain {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .cv-job-date {
+    font-size: 0.775rem;
+    color: #94a3b8;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .cv-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding-left: 0;
+  }
+
+  .cv-bullets li {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.65;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .cv-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #0d9488;
+    font-weight: 600;
+  }
+
+  .cv-bullets strong { color: #1e293b; font-weight: 600; }
+
+  /* ── Two column ── */
+  .cv-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .cv-two-col { grid-template-columns: 1fr; }
+  }
+
+  /* ── Education ── */
+  .cv-edu-item { margin-bottom: 0.9rem; }
+  .cv-edu-item:last-child { margin-bottom: 0; }
+
+  .cv-edu-degree {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.1rem;
+  }
+
+  .cv-edu-school {
+    font-size: 0.8rem;
+    color: #475569;
+    margin-bottom: 0.1rem;
+  }
+
+  .cv-edu-meta {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  /* ── Languages ── */
+  .cv-lang-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .cv-lang-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+
+  .cv-lang-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .cv-lang-level {
+    font-size: 0.775rem;
+    color: #64748b;
+  }
+
+  /* ── Skills ── */
+  .cv-skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cv-skill-group-title {
+    font-size: 0.775rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 99px;
+    background: #f0fdf4;
+    color: #0f766e;
+    border: 1px solid #99f6e4;
+  }
+
+  /* ── Certificates ── */
+  .cv-cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .cv-cert-grid { grid-template-columns: 1fr; }
+  }
+
+  .cv-cert-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .cv-cert-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .cv-cert-org {
+    font-size: 0.73rem;
+    color: #64748b;
+  }
+
+  /* ── Mobile card padding ── */
+  @media (max-width: 600px) {
+    .cv-header { padding: 2rem 1.5rem 1.5rem; }
+    .cv-body { padding: 1.5rem 1.5rem 2rem; }
+  }
+
+  /* ── Bottom CTA ── */
+  .bottom-cta {
+    display: flex;
+    justify-content: center;
+    padding: 1.75rem 0 0.5rem;
+  }
+
+  .download-btn-lg {
+    font-size: 0.95rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 99px;
+  }
+
+  /* ── Animation ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
