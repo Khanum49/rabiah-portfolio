@@ -2,17 +2,35 @@
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import { getCollection } from "astro:content";
 
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) part = part.slice(1);
+      if (index < parts.length - 1 && part.endsWith('/')) part = part.slice(0, -1);
+      return part;
+    })
+    .join('/');
+};
+
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
 
-  return docs.map((doc) => ({
+  const order = ['linux-firewall', 'inter-vlan', 'esp32-overview', 'stm32-arm-cortex', 'rtos-vs-bare-metal'];
+  const sorted = docs.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug));
+
+  return sorted.map((doc, index) => ({
     params: { slug: doc.slug },
-    props: { doc },
+    props: {
+      doc,
+      prevDoc: index > 0 ? sorted[index - 1] : null,
+      nextDoc: index < sorted.length - 1 ? sorted[index + 1] : null,
+    },
   }));
 }
 
-const { doc } = Astro.props;
+const { doc, prevDoc, nextDoc } = Astro.props;
 const { Content } = await doc.render();
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <DocsLayout>
@@ -20,4 +38,33 @@ const { Content } = await doc.render();
     <h1>{doc.data.title}</h1>
     <Content />
   </article>
+
+  <!-- Prev / Next navigation -->
+  <nav class="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row gap-3 sm:gap-0 sm:justify-between">
+    {prevDoc ? (
+      <a
+        href={joinPath(baseUrl, 'docs', prevDoc.slug)}
+        class="group flex items-center gap-3 px-5 py-4 rounded-xl border border-slate-200 hover:border-teal-300 hover:bg-teal-50/50 transition-all duration-200 sm:max-w-[45%] no-underline"
+      >
+        <span class="text-teal-600 text-xl leading-none group-hover:-translate-x-1 transition-transform duration-200">←</span>
+        <span class="flex flex-col min-w-0">
+          <span class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-0.5">Previous</span>
+          <span class="text-sm font-semibold text-slate-700 group-hover:text-teal-700 truncate">{prevDoc.data.title}</span>
+        </span>
+      </a>
+    ) : <div />}
+
+    {nextDoc ? (
+      <a
+        href={joinPath(baseUrl, 'docs', nextDoc.slug)}
+        class="group flex items-center gap-3 px-5 py-4 rounded-xl border border-slate-200 hover:border-teal-300 hover:bg-teal-50/50 transition-all duration-200 sm:max-w-[45%] text-right sm:ml-auto no-underline"
+      >
+        <span class="flex flex-col min-w-0">
+          <span class="text-xs text-slate-400 uppercase tracking-wider font-medium mb-0.5">Next</span>
+          <span class="text-sm font-semibold text-slate-700 group-hover:text-teal-700 truncate">{nextDoc.data.title}</span>
+        </span>
+        <span class="text-teal-600 text-xl leading-none group-hover:translate-x-1 transition-transform duration-200">→</span>
+      </a>
+    ) : <div />}
+  </nav>
 </DocsLayout>

@@ -32,28 +32,83 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Documentation — Rabiah Khanum">
-  <div class="docs-layout max-w-7xl mx-auto px-6 pt-28">
+  <div class="docs-layout max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
+
+    <!-- Mobile Nav Toggle Bar -->
+    <div class="lg:hidden mb-4">
+      <button
+        id="mobile-nav-toggle"
+        class="w-full flex items-center justify-between px-4 py-3 bg-gradient-to-r from-teal-50 to-blue-50 border border-teal-100 rounded-xl text-teal-700 font-medium text-sm"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          Browse Documentation
+        </span>
+        <svg id="mobile-nav-chevron" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Mobile Nav Drawer -->
+      <div
+        id="mobile-nav-drawer"
+        class="hidden mt-2 bg-gradient-to-br from-teal-50/80 to-blue-50/80 rounded-2xl p-5 border border-teal-100/50 shadow-sm"
+      >
+        <h3 class="text-xs font-semibold text-teal-700 uppercase tracking-wider mb-3">Navigation</h3>
+        <div class="space-y-1 text-sm">
+          <a
+            href={joinPath(baseUrl, 'docs')}
+            class="block py-2 px-3 rounded-lg transition-all"
+            class:list={[
+              currentPath === joinPath(baseUrl, 'docs') || currentPath === joinPath(baseUrl, 'docs/')
+                ? 'bg-teal-100 text-teal-700 font-semibold'
+                : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
+            ]}
+          >
+            Documentation Home
+          </a>
+          {sortedDocs.map((doc) => (
+            <a
+              href={joinPath(baseUrl, 'docs', doc.slug)}
+              class="block py-2 px-3 rounded-lg transition-all"
+              class:list={[
+                currentPath.includes(`/${doc.slug}`)
+                  ? 'bg-teal-100 text-teal-700 font-semibold'
+                  : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
+              ]}
+            >
+              {doc.data.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <div class="flex gap-8">
-      
-      <!-- Left Sidebar - Navigation -->
+
+      <!-- Left Sidebar - Navigation (desktop only) -->
       <aside class="w-64 shrink-0 hidden lg:block">
         <nav class="sticky top-32 bg-gradient-to-br from-teal-50/80 to-blue-50/80 rounded-2xl p-6 border border-teal-100/50 shadow-sm">
           <h3 class="text-xs font-semibold text-teal-700 uppercase tracking-wider mb-4">Navigation</h3>
           <div class="space-y-2 text-sm">
-            <a 
+            <a
               href={joinPath(baseUrl, 'docs')}
               class="block py-2 px-3 rounded-lg transition-all"
               class:list={[
                 currentPath === joinPath(baseUrl, 'docs') || currentPath === joinPath(baseUrl, 'docs/')
-                  ? 'bg-teal-100 text-teal-700 font-semibold' 
+                  ? 'bg-teal-100 text-teal-700 font-semibold'
                   : 'text-slate-600 hover:bg-teal-50 hover:text-teal-600'
               ]}
             >
               Documentation Home
             </a>
-            
+
             {sortedDocs.map((doc) => (
-              <a 
+              <a
                 href={joinPath(baseUrl, 'docs', doc.slug)}
                 class="block py-2 px-3 rounded-lg transition-all"
                 class:list={[
@@ -72,14 +127,37 @@ const baseUrl = import.meta.env.BASE_URL;
       <!-- Main Content -->
       <main class="flex-1 min-w-0">
         <slot />
+
+        <!-- Mobile TOC (below content on small screens) -->
+        <div class="xl:hidden mt-10">
+          <button
+            id="mobile-toc-toggle"
+            class="w-full flex items-center justify-between px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 font-medium text-sm"
+            aria-expanded="false"
+            aria-controls="mobile-toc-drawer"
+          >
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h12M4 14h8" />
+              </svg>
+              On This Page
+            </span>
+            <svg id="mobile-toc-chevron" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="mobile-toc-drawer" class="hidden mt-2 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+            <div id="toc-mobile" class="space-y-2 text-sm"></div>
+          </div>
+        </div>
       </main>
 
-      <!-- Right Sidebar - Table of Contents -->
+      <!-- Right Sidebar - Table of Contents (desktop only) -->
       <aside class="w-56 shrink-0 hidden xl:block">
         <nav class="sticky top-32 text-sm">
           <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">On This Page</h3>
           <div id="toc" class="space-y-2">
-            <!-- Table of contents will be populated by JavaScript -->
+            <!-- Populated by JS -->
           </div>
         </nav>
       </aside>
@@ -89,94 +167,116 @@ const baseUrl = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <script>
-  // Generate table of contents from page headings
-  document.addEventListener('DOMContentLoaded', () => {
-    const tocContainer = document.getElementById('toc');
-    if (!tocContainer) return;
+  // ── Mobile nav toggle ──────────────────────────────────────────────────────
+  const navToggle = document.getElementById('mobile-nav-toggle');
+  const navDrawer = document.getElementById('mobile-nav-drawer');
+  const navChevron = document.getElementById('mobile-nav-chevron');
 
-    // Get all h2 and h3 headings from the main content
-    const article = document.querySelector('article');
+  navToggle?.addEventListener('click', () => {
+    const open = navDrawer?.classList.toggle('hidden') === false;
+    navToggle.setAttribute('aria-expanded', String(open));
+    navChevron?.classList.toggle('rotate-180', open);
+  });
+
+  // ── Mobile TOC toggle ──────────────────────────────────────────────────────
+  const tocToggle = document.getElementById('mobile-toc-toggle');
+  const tocDrawer = document.getElementById('mobile-toc-drawer');
+  const tocChevron = document.getElementById('mobile-toc-chevron');
+
+  tocToggle?.addEventListener('click', () => {
+    const open = tocDrawer?.classList.toggle('hidden') === false;
+    tocToggle.setAttribute('aria-expanded', String(open));
+    tocChevron?.classList.toggle('rotate-180', open);
+  });
+
+  // ── Generate table of contents ─────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocContainer   = document.getElementById('toc');
+    const tocMobile      = document.getElementById('toc-mobile');
+    if (!tocContainer && !tocMobile) return;
+
+    const article  = document.querySelector('article');
     if (!article) return;
 
     const headings = article.querySelectorAll('h2, h3');
-    
+
     if (headings.length === 0) {
-      tocContainer.innerHTML = '<p class="text-slate-400 text-xs">No headings found</p>';
+      if (tocContainer) tocContainer.innerHTML = '<p class="text-slate-400 text-xs">No headings found</p>';
+      if (tocMobile)    tocMobile.innerHTML    = '<p class="text-slate-400 text-xs">No headings found</p>';
       return;
     }
 
-    headings.forEach((heading, index) => {
-      // Create an ID for the heading if it doesn't have one
-      if (!heading.id) {
-        heading.id = `heading-${index}`;
-      }
+    const buildLink = (heading: Element, index: number) => {
+      if (!heading.id) heading.id = `heading-${index}`;
 
       const link = document.createElement('a');
-      link.href = `#${heading.id}`;
+      link.href      = `#${heading.id}`;
       link.textContent = heading.textContent || '';
-      link.className = 'block py-1.5 text-slate-600 hover:text-teal-600 transition-colors border-l-2 border-transparent hover:border-teal-400';
-      
-      // Indent h3 headings
+      link.className   = 'block py-1.5 text-slate-600 hover:text-teal-600 transition-colors border-l-2 border-transparent hover:border-teal-400';
+
       if (heading.tagName === 'H3') {
         link.className += ' pl-4 text-xs';
       } else {
         link.className += ' pl-2 font-medium';
       }
 
-      // Highlight active section
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.getElementById(heading.id);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Update URL without triggering page reload
           history.pushState(null, '', `#${heading.id}`);
+        }
+        // Close mobile TOC drawer after clicking
+        if (tocDrawer && !tocDrawer.classList.contains('hidden')) {
+          tocDrawer.classList.add('hidden');
+          tocToggle?.setAttribute('aria-expanded', 'false');
+          tocChevron?.classList.remove('rotate-180');
         }
       });
 
-      tocContainer.appendChild(link);
+      return link;
+    };
+
+    headings.forEach((heading, index) => {
+      if (tocContainer) tocContainer.appendChild(buildLink(heading, index));
+      if (tocMobile)    tocMobile.appendChild(buildLink(heading, index));
     });
 
-    // Highlight current section on scroll
+    // Highlight active section on scroll
+    const allTocLinks = [tocContainer, tocMobile].filter(Boolean);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.id;
-          const tocLink = tocContainer.querySelector(`a[href="#${id}"]`);
-          
-          if (entry.isIntersecting && tocLink) {
-            // Remove active class from all links
-            tocContainer.querySelectorAll('a').forEach(link => {
-              link.classList.remove('text-teal-600', 'border-teal-600', 'font-semibold');
-              link.classList.add('text-slate-600', 'border-transparent');
-            });
-            
-            // Add active class to current link
-            tocLink.classList.remove('text-slate-600', 'border-transparent');
-            tocLink.classList.add('text-teal-600', 'border-teal-600', 'font-semibold');
-          }
+          allTocLinks.forEach((container) => {
+            const tocLink = container!.querySelector(`a[href="#${id}"]`);
+            if (entry.isIntersecting && tocLink) {
+              container!.querySelectorAll('a').forEach(link => {
+                link.classList.remove('text-teal-600', 'border-teal-600', 'font-semibold');
+                link.classList.add('text-slate-600', 'border-transparent');
+              });
+              tocLink.classList.remove('text-slate-600', 'border-transparent');
+              tocLink.classList.add('text-teal-600', 'border-teal-600', 'font-semibold');
+            }
+          });
         });
       },
       { rootMargin: '-100px 0px -80% 0px' }
     );
 
-    headings.forEach((heading) => {
-      observer.observe(heading);
-    });
+    headings.forEach((heading) => observer.observe(heading));
   });
 </script>
 
 <style>
-  /* Smooth scrolling for anchor links */
   html {
     scroll-behavior: smooth;
   }
-
-  /* Style for the main content area to ensure proper spacing */
   main article {
     scroll-margin-top: 2rem;
   }
-
   main article h2,
   main article h3 {
     scroll-margin-top: 6rem;
