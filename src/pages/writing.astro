@@ -18,13 +18,61 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- LinkedIn Article Card -->
       <div class="mb-8 sm:mb-12">
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100">
-          <div class="bg-gradient-to-r from-teal-500 to-blue-600 h-2"></div>
+          <div class="bg-gradient-to-r from-blue-800 to-blue-400 h-2"></div>
           <div class="p-6 sm:p-8 md:p-12">
             <div class="flex items-center gap-3 mb-5 sm:mb-6">
-              <svg class="w-7 h-7 sm:w-8 sm:h-8 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
+              <svg class="w-7 h-7 sm:w-8 sm:h-8 text-blue-800" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
               </svg>
-              <span class="text-xs sm:text-sm font-medium text-teal-600 uppercase tracking-wider">LinkedIn Article</span>
+              <span class="text-xs sm:text-sm font-medium text-blue-800 uppercase tracking-wider">LinkedIn Article</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-5 sm:mb-6" style="font-family: 'Playfair Display', serif;">
+              All This Brain and We Don't Even Use It to Think Words?
+            </h2>
+
+            <div class="prose prose-lg max-w-none text-slate-700 mb-6 sm:mb-8">
+              <p class="text-base sm:text-lg leading-relaxed mb-4">
+                In an age where AI can effortlessly turn scattered thoughts into polished prose, we’re quietly losing the habit of thinking through words ourselves. This piece reflects on Tom Johnson 's article titled "Bakhtin and model collapse: How to use AI with expressive writing without generating AI slop". It focuses on the idea that how writing, once messy, uncertain, and deeply human, is increasingly outsourced to tools that smooth out both error and originality.
+              </p>
+
+              <p class="leading-relaxed mb-4">
+                Drawing on Bakhtin’s ideas of monologism and heteroglossia, it explores how AI-driven writing risks flattening our voices into sameness. It argues for resisting that collapse by reclaiming the struggle of first drafts, embracing “messy thinking,” and allowing writing to remain a dialogue between competing ideas rather than a single, polished output.
+              </p>
+            </div>
+
+            <!-- Card footer: stacks on mobile, side-by-side on sm+ -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-5 sm:pt-6 border-t border-slate-200">
+              <div class="text-xs sm:text-sm text-slate-500">
+                Published on LinkedIn • February 26, 2026 • 10 min read
+              </div>
+              <a
+                href="https://www.linkedin.com/pulse/all-brain-we-dont-even-use-think-words-rabiah-khanum-wzvzf/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-800 to-blue-400 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm sm:text-base w-full sm:w-auto"
+              >
+                Read Full Article
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- LinkedIn Article Card -->
+      <div class="mb-8 sm:mb-12">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100">
+          <div class="bg-gradient-to-r from-blue-600 to-teal-500  h-2"></div>
+          <div class="p-6 sm:p-8 md:p-12">
+            <div class="flex items-center gap-3 mb-5 sm:mb-6">
+              <svg class="w-7 h-7 sm:w-8 sm:h-8 text-blue-800" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <span class="text-xs sm:text-sm font-medium text-blue-800 uppercase tracking-wider">LinkedIn Article</span>
             </div>
 
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-5 sm:mb-6" style="font-family: 'Playfair Display', serif;">
@@ -98,7 +146,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <!-- Card footer: stacks on mobile, side-by-side on sm+ -->
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-5 sm:pt-6 border-t border-slate-200">
               <div class="text-xs sm:text-sm text-slate-500">
-                Creative Writing Sample • Stream of Consciousness
+                Creative Writing Sample • Stream of Consciousness • 5 min read
               </div>
               <a
                 href={`${import.meta.env.BASE_URL}dream-a-fiction`}
@@ -113,6 +161,74 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
       </div>
+
+      
+      <!-- Good Reads Article Card -->
+      <div class="mb-8 sm:mb-12">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100">
+          <div class="bg-gradient-to-r from-yellow-400 to-yellow-700 h-2"></div>
+          <div class="p-6 sm:p-8 md:p-12">
+            <div class="flex items-center gap-3 mb-5 sm:mb-6">
+              <div class="w-10 h-10 flex items-center justify-center rounded-md bg-amber-50 shadow-sm">
+                <svg class="w-7 h-7 sm:w-8 sm:h-8 text-black-600" fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Goodreads">
+                  <title>Goodreads</title>
+                  <path d="M17.346.026c.422-.083.859.037 1.179.325.346.284.55.705.557 1.153-.023.457-.247.88-.612 1.156l-2.182 1.748a.601.601 0 0 0-.255.43.52.52 0 0 0 .11.424 5.886 5.886 0 0 1 .832 6.58c-1.394 2.79-4.503 3.99-7.501 2.927a.792.792 0 0 0-.499-.01c-.224.07-.303.18-.453.383l-.014.02-.941 1.254s-.792.985.457.935c3.027-.119 3.817-.119 5.439-.01 2.641.18 3.806 1.903 3.806 3.275 0 1.623-1.036 3.383-3.809 3.383a117.46 117.46 0 0 0-5.517-.03c-.31.005-.597.013-.835.02-.228.006-.41.011-.52.011-.712 0-1.648-.186-1.66-1.068-.008-.729.624-1.12 1.11-1.172.43-.045.815.007 1.24.064.252.034.518.07.815.088.185.011.366.025.552.038.53.038 1.102.08 1.926.087.427.005.759.01 1.025.015.695.012.941.016 1.28-.015 1.248-.112 1.832-.61 1.832-1.376 0-.805-.584-1.264-1.698-1.414-1.564-.213-2.33-.163-3.72-.074a87.66 87.66 0 0 1-1.669.095c-.608.029-2.449.026-2.682-1.492-.053-.416-.073-1.116.807-2.325l.75-1.003c.36-.49.582-.898.053-1.559 0 0-.39-.468-.52-.638-1.215-1.587-1.512-4.08-.448-6.114 1.577-3.011 5.4-4.26 8.37-2.581.253.143.438.203.655.163.201-.032.27-.167.363-.344.02-.04.042-.082.067-.126.004-.01.241-.465.535-1.028l.734-1.41a1.493 1.493 0 0 1 1.041-.785ZM9.193 13.243c1.854.903 3.912.208 5.254-2.47 1.352-2.699.827-5.11-1.041-6.023C10.918 3.537 8.81 5.831 8.017 7.41c-1.355 2.698-.717 4.886 1.147 5.818Z"/>
+                </svg>
+              </div>
+              <span class="text-xs sm:text-sm font-medium text-yellow-900 uppercase tracking-wider">Goodreads Book Review</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-5 sm:mb-6" style="font-family: 'Playfair Display', serif;">
+              Detailed Book Review of "Take it Back" by Kia Abdullah
+            </h2>
+
+            <div class="prose prose-lg max-w-none text-slate-700 mb-6 sm:mb-8">
+              <p class="text-base sm:text-lg leading-relaxed mb-4">
+                I came across Kia Abdullah's book "Take it Back" through an Instagram reel by a women suggesting some psychological thrillers, which is one of my favourite genres. The book unknowingly elicited very strong emotions from me and I was left reeling after the read. When something like this happens I can do nothing but let the words pour out then.
+              </p>
+
+              <p class="leading-relaxed mb-4">
+                Abdullah’s viewpoint as a South Asian born in Britain, where cultural values from both regions intermix to form a somewhat uneven blend of customs, is both valid and flawed. While I agree with some of the ideas behind her motivation in the prose, I also strongly disagree with certain perspectives. My review, although emotional, is grounded in critical thinking and my own experience of having part of my extended family brought up in England. Although some may argue that this is not the same experience, I still believe it provides me with at least some, if not most, of the perspective needed to comment on the themes in the book.
+              </p>
+
+              <p class="leading-relaxed">
+                Here's the link to the actual book on Goodreads where you can find my 2 star review: 
+                <a href="https://www.goodreads.com/book/show/43532531-take-it-back" target="_blank" class="inline-flex items-center gap-2 text-yellow-900" > Checkout Goodreads
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-r from-yellow-50 to-amber-100 rounded-xl p-4 sm:p-6 mb-5 sm:mb-6">
+              <p class="text-slate-700 italic leading-relaxed text-sm sm:text-base">
+                "Can't you see, Mum? Oppression doesn't spread through men with guns, or bombs on trains. Oppression spreads when women like you tell their daughters to marry a certain man, or wear a certain dress, or work a certain job. It happens when women like you tell us – gently and with all the love in the world – not to peek above the parapet, instead to stay at home, to be quiet, to be kind, to be good."
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-2">— Zara Kaleel, Take it Back, Kia Abdullah</p>
+            </div>
+
+            <!-- Card footer: stacks on mobile, side-by-side on sm+ -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-5 sm:pt-6 border-t border-slate-200">
+              <div class="text-xs sm:text-sm text-slate-500">
+                Published on Goodreads • April 29, 2026 • 10 min read
+              </div>
+              <a
+                href={`${import.meta.env.BASE_URL}goodreads-review`}
+                class="inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm sm:text-base w-full sm:w-auto"
+              >
+                Read Full Review
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
 
       <!-- Writing Philosophy Section -->
       <div class="bg-gradient-to-br from-teal-50 to-blue-50 rounded-2xl p-6 sm:p-8 md:p-12">
