@@ -2,130 +2,331 @@
 // src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) part = part.slice(1);
+      if (index < parts.length - 1 && part.endsWith('/')) part = part.slice(0, -1);
+      return part;
+    })
+    .join('/');
+};
+
 const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Rabiah Khanum — Technical Writer Portfolio">
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-card">
-            <h1 class="hero-title">Rabiah Khanum</h1>
-            <p class="hero-description">
-                Technical Writer & Electrical Engineer building clear, scalable documentation 
-                for complex systems, from cloud networking to docs-as-code workflows.
+
+  <div class="page-wrapper">
+    <div class="main-card">
+
+      <!-- ── Hero ── -->
+      <section class="hero-section">
+        <p class="eyebrow">Technical Writer & Electrical Engineer</p>
+        <h1 class="hero-title">Rabiah Khanum</h1>
+        <p class="hero-description">
+          Building clear, scalable documentation for complex systems, from cloud networking to docs-as-code workflows.
+        </p>
+
+      <hr class="card-divider" />
+
+      <!-- ── About ── -->
+      <section id="about" class="about-section">
+        <p class="eyebrow">Get to know me</p>
+        <h2 class="section-title">About Me</h2>
+        <div class="title-divider"></div>
+
+        <div class="about-grid">
+
+          <!-- Bio -->
+          <div class="bio-section">
+            <p class="bio-text">
+                I'm a <strong>Technical Writer and Electrical Engineer</strong> based in Islamabad, Pakistan,
+                currently working at <strong>Xgrid</strong> where I build clear, scalable documentation for
+                complex systems, from cloud networking to docs-as-code workflows.
             </p>
-            <a href={`${base}about`} class="btn btn-primary">
-                Get to Know me
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
-                </svg>
+            <p class="bio-text">
+                My background in electrical engineering gives me a genuine foundation in the technical
+                topics I write about: embedded systems, microcontrollers, networking, and firmware. I don't
+                just translate jargon, I understand what I'm documenting.
+            </p>
+            <p class="bio-text">
+                I'm a graduate of the <strong>Harvard Aspire Leaders Program</strong>, and I write about what
+                I care about: documentation craft, deep reading, and the intersections of engineering and
+                storytelling.
+            </p>
+            <a href="https://www.linkedin.com/in/rabiahkhanum2049/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+              Connect on LinkedIn
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" />
+              </svg>
             </a>
+          </div>
+
+          <!-- Skills -->
+          <div class="skills-section">
+            <h3 class="skills-title">What I work with</h3>
+            <div class="tags">
+              <span class="tag tag-teal">Technical Writing</span>
+              <span class="tag tag-teal">Docs-as-Code</span>
+              <span class="tag tag-teal">reStructuredText / Markdown</span>
+              <span class="tag tag-purple">Astro</span>
+              <span class="tag tag-purple">GitHub / VSCode</span>
+              <span class="tag tag-purple">Sphinx</span>
+              <span class="tag tag-blue">Cloud</span>
+              <span class="tag tag-blue">Networking</span>
+              <span class="tag tag-blue">Linux</span>
+              <span class="tag tag-pink">API Docs</span>
+              <span class="tag tag-pink">Postman</span>
+              <span class="tag tag-pink">REST APIs</span>
+            </div>
+          </div>
+
         </div>
-    </section>
+
+        <hr class="section-divider" />
+
+        <!-- Explore my work -->
+        <h3 class="explore-heading">Explore my work</h3>
+        <div class="links-grid">
+          <a href={joinPath(base, 'docs')} class="work-card work-card-teal">
+            <span class="work-card-label">Documentation</span>
+            <span class="work-card-desc">Technical guides & articles</span>
+          </a>
+          <a href={joinPath(base, 'api-docs')} class="work-card work-card-purple">
+            <span class="work-card-label">API Docs</span>
+            <span class="work-card-desc">OpenAPI & REST samples</span>
+          </a>
+          <a href={joinPath(base, 'writing')} class="work-card work-card-teal">
+            <span class="work-card-label">Blogs</span>
+            <span class="work-card-desc">Articles & essays</span>
+          </a>
+          <a href={joinPath(base, 'videos')} class="work-card work-card-purple">
+            <span class="work-card-label">Videos</span>
+            <span class="work-card-desc">Interviews & talks</span>
+          </a>
+          <a href={joinPath(base, 'resume')} class="work-card work-card-teal">
+            <span class="work-card-label">My Resume</span>
+            <span class="work-card-desc">Detailed Experience & Tech Stack</span>
+          </a>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
 
 </BaseLayout>
 
 <style>
-    /* Hero Section */
-    .hero {
-        min-height: 85vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 5rem 2rem 2rem;
+  /* ── Outer wrapper ── */
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 6.5rem 1.5rem 4rem; /* top clears fixed navbar */
+  }
+
+  /* ── Single unified card ── */
+  .main-card {
+    max-width: 960px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
+    padding: 3.5rem 3rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Hero section (top half of card) ── */
+  .hero-section {
+    padding-bottom: 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #0d9488;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    color: #475569;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    max-width: 1000px;
+  }
+
+  
+  /* ── Divider between hero and about ── */
+  .card-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 0;
+  }
+
+  /* ── About section (bottom half of card) ── */
+  .about-section {
+    padding-top: 2.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.15;
+  }
+
+  .title-divider {
+    width: 180px;
+    height: 3px;
+    background: linear-gradient(90deg, #0d9488, #6366f1);
+    border-radius: 99px;
+    margin: 1.25rem 0 2.25rem;
+  }
+
+  /* Bio + skills grid */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bio-text {
+    color: #475569;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+
+  .bio-text strong {
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #0d9488;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.55rem 1.1rem;
+    border: 1.5px solid #0d9488;
+    border-radius: 99px;
+    margin-top: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .linkedin-btn:hover {
+    background: #fff;
+    color: #0d9488;
+  }
+
+  /* Skills */
+  .skills-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border-radius: 99px;
+  }
+
+  .tag-teal   { background: #ccfbf1; color: #0f766e; }
+  .tag-purple { background: #ede9fe; color: #6d28d9; }
+  .tag-blue   { background: #dbeafe; color: #1d4ed8; }
+  .tag-pink   { background: #fce7f3; color: #be185d; }
+
+  /* Section divider inside about */
+  .section-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 2.5rem 0;
+  }
+
+  /* Explore my work */
+  .explore-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .work-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  .work-card-teal   { background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border-color: #99f6e4; }
+  .work-card-purple { background: linear-gradient(135deg, #faf5ff, #f0e6ff); border-color: #ddd6fe; }
+
+  .work-card-label { font-size: 0.925rem; font-weight: 600; color: #1e293b; }
+  .work-card-desc  { font-size: 0.78rem; color: #64748b; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .main-card {
+      padding: 2.25rem 1.25rem;
+      border-radius: 1.5rem;
     }
 
-    .hero-card {
-        max-width: 900px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(8px);
-        border-radius: 24px;
-        padding: 3rem;
-        box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
-        animation: fadeInUp 0.8s ease-out;
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .hero-subtitle {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #9ca3af;
-        margin-bottom: 1rem;
-    }
-
-    .hero-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 3.5rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-    }
-
-    .hero-description {
-        font-size: 1.15rem;
-        color: #475569;
-        margin-bottom: 2rem;
-        line-height: 1.7;
-    }
-
-    .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        padding: 0.875rem 2rem;
-        border-radius: 12px;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.2s;
-        font-size: 0.95rem;
-        display: inline-block;
-    }
-
-    .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background: #0d9488;
-        color: #ffff;
-        font-size: 0.875rem;
-        font-weight: 500;
-        text-decoration: none;
-        padding: 0.55rem 1.1rem;
-        border: 1.5px solid #0d9488;
-        border-radius: 99px;
-        margin-top: 0.5rem;
-        transition: background 0.2s, color 0.2s;
-    }
-
-    .btn-primary:hover {
-        background: #ffff;
-        color: #0d9488;
-        }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 2.5rem;
-        }
-
-        .hero-card {
-            padding: 2rem;
-        }
-
-    }
+  }
 </style>
+
