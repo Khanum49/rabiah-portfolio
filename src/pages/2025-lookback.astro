@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="2025 Lookback LinkedIn Post - Rabiah Khanum">
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <a href={`${import.meta.env.BASE_URL}writing`} class="inline-flex items-center text-blue-700 hover:text-blue-800 mb-6 transition-colors">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Writing
+        </a>
+        
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+          A Lookback at my 2025 Journey
+        </h1>
+        
+        <p class="text-md text-slate-600 max-w-2xl mx-auto">
+          A glimpse of everything I learned in 2025 and 2026's goals 
+        </p>
+      </div>
+
+      <!-- Story Content -->
+      <article class="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-12 border border-slate-100">
+        <div class="prose prose-md max-w-none">
+          <p class="text-slate-700 leading-relaxed text-justify">
+            Since it’s almost the end of 2025 and everyone on the internet is sharing their look back on the year, I’d also like to add my own reflection to the mix and share my journey this year.
+          </p>
+
+          <p class="text-slate-700 leading-relaxed">
+            This year started with me stepping into a job I was scared and anxious about (not unusual), but as time progressed, I literally stepped into a new world. I had never been this active on LinkedIn before, as I had just created this account in my last year of my bachelor’s degree (do not recommend that, make one early on) to look for opportunities when I finally stopped worrying about my CGPA and focused on actually completing my degree.
+          </p>
+          
+          <p class="text-slate-700 leading-relaxed">
+            It feels like just yesterday that I was in uni, but it’s been more than a year since I graduated (Alhamdulillah, it still feels like a dream).
+          </p>
+          
+          <p class="text-slate-700 leading-relaxed text-justify">
+            The topmost things I learned this year, in no particular order, are:
+            <ul>
+              <li>If you stay consistent in whatever you do and don’t quit, you will reach somewhere.</li>
+              <li>Corporate life is like a giant snake-and-ladder game. Sometimes you make months of progress in a single week, and sometimes you just sit there staring at a blocker and questioning every life decision.</li>
+              <li>Learning is never linear; you learn by doing. If you stop experimenting and making mistakes, you may never truly learn.</li>
+              <li>Comparing your work to others is one of the most pointless things you can do. While there may be some people who don’t put in effort, most people are doing the best they can. Undermining your own work because of someone else’s opinion or your own insecurity is an injustice to yourself. You just need to show up and make an effort.</li>
+              <li>Tech writing is fun, yet anything tech-related is always evolving, so you can’t really guarantee permanence because nothing truly is.</li>
+              <li>What I’ve learned this year reinforced how powerful firsthand experience really is.</li>
+            </ul>
+          </p>
+
+          <p class="text-slate-700 leading-relaxed text-justify">
+            What I achieved:
+           <ul>
+            <li>Learned GitHub, HTML, CSS, documentation, docs-as-code, interviewing leadership, giving interviews, connecting and talking to a ton of people online, speaking up, understanding “corporate”, and last but not least, writing LinkedIn posts (which, for some reason, still scares me, sharing a part of myself with such a huge audience).</li>
+            <li>Started learning Finnish (so I can understand my favorite kid’s ramblings).</li>
+            <li>Read 18 books.</li>
+            <li>Socialized, lived on my own in a big city, solo traveled, learned to drive a stick shift, handled my own bills at 23 (feeling 50, honestly), and navigated adult life in general.</li>
+            <li>Learned how to stop being insecure all the time and simply embrace my growth at my own pace, accepting that everyone’s journey is unique and that no one else can be 𝘺𝘰𝘶 at the time you are being 𝘺𝘰𝘶.</li>
+            </ul>
+          </p>
+
+          <p class="text-slate-700 leading-relaxed text-justify">
+            Some of 2026’s goals:
+            <ul>
+             <li>Read more (productive) books</li>
+             <li>Create a blog of my own (maybe)</li>
+             <li>Fully tackle API documentation</li>
+             <li>Get a driving license</li>
+             <li>Cut down social media screen time</li>
+           </ul>
+          </p>
+          
+        </div>
+      </article>
+
+      <!-- Back Button -->
+      <div class="text-center">
+        <a 
+          href={`${import.meta.env.BASE_URL}writing`}
+          class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-900 text-white rounded-lg font-small hover:shadow-lg transition-all duration-300 hover:scale-105"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Writing
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  article {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -34,7 +34,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </article>
 
-      <!-- Card 2: All This Brain -->
+      <!-- Card 2: Goodreads Review -->
+      <article class="card">
+        <div class="card-accent card-accent-yellow"></div>
+        <div class="card-body">
+          <div class="card-tag card-tag-yellow">
+            <svg class="tag-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M17.346.026c.422-.083.859.037 1.179.325.346.284.55.705.557 1.153-.023.457-.247.88-.612 1.156l-2.182 1.748a.601.601 0 0 0-.255.43.52.52 0 0 0 .11.424 5.886 5.886 0 0 1 .832 6.58c-1.394 2.79-4.503 3.99-7.501 2.927a.792.792 0 0 0-.499-.01c-.224.07-.303.18-.453.383l-.014.02-.941 1.254s-.792.985.457.935c3.027-.119 3.817-.119 5.439-.01 2.641.18 3.806 1.903 3.806 3.275 0 1.623-1.036 3.383-3.809 3.383a117.46 117.46 0 0 0-5.517-.03c-.31.005-.597.013-.835.02-.228.006-.41.011-.52.011-.712 0-1.648-.186-1.66-1.068-.008-.729.624-1.12 1.11-1.172.43-.045.815.007 1.24.064.252.034.518.07.815.088.185.011.366.025.552.038.53.038 1.102.08 1.926.087.427.005.759.01 1.025.015.695.012.941.016 1.28-.015 1.248-.112 1.832-.61 1.832-1.376 0-.805-.584-1.264-1.698-1.414-1.564-.213-2.33-.163-3.72-.074a87.66 87.66 0 0 1-1.669.095c-.608.029-2.449.026-2.682-1.492-.053-.416-.073-1.116.807-2.325l.75-1.003c.36-.49.582-.898.053-1.559 0 0-.39-.468-.52-.638-1.215-1.587-1.512-4.08-.448-6.114 1.577-3.011 5.4-4.26 8.37-2.581.253.143.438.203.655.163.201-.032.27-.167.363-.344.02-.04.042-.082.067-.126.004-.01.241-.465.535-1.028l.734-1.41a1.493 1.493 0 0 1 1.041-.785ZM9.193 13.243c1.854.903 3.912.208 5.254-2.47 1.352-2.699.827-5.11-1.041-6.023C10.918 3.537 8.81 5.831 8.017 7.41c-1.355 2.698-.717 4.886 1.147 5.818Z"/></svg>
+            <span>Goodreads Book Review</span>
+          </div>
+          <h2 class="card-title">Detailed Book Review of "Take it Back" by Kia Abdullah</h2>
+          <p class="card-desc">A psychological thriller that left me reeling, and disagreeing. My 2-star review of Kia Abdullah's <em>Take it Back</em>, written as a South Asian reader with family ties to Britain.</p>
+          <div class="card-footer">
+            <span class="card-meta">Published on Goodreads • April 29, 2026 • 10 min read</span>
+            <a href={`${import.meta.env.BASE_URL}goodreads-review`} class="card-btn card-btn-yellow">
+              Read Full Review
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: All This Brain -->
       <article class="card">
         <div class="card-accent card-accent-blue"></div>
         <div class="card-body">
@@ -43,7 +63,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span>LinkedIn Article</span>
           </div>
           <h2 class="card-title">All This Brain and We Don't Even Use It to Think Words?</h2>
-          <p class="card-desc">What happens to our thinking when AI does the writing for us? Reflecting on Tom Johnson's piece on Bakhtin and model collapse — and why the struggle of a messy first draft is worth protecting.</p>
+          <p class="card-desc">What happens to our thinking when AI does the writing for us? Reflecting on Tom Johnson's piece on Bakhtin and model collapse, and why the struggle of a messy first draft is worth protecting.</p>
           <div class="card-footer">
             <span class="card-meta">Published on LinkedIn • February 26, 2026 • 10 min read</span>
             <a href="https://www.linkedin.com/pulse/all-brain-we-dont-even-use-think-words-rabiah-khanum-wzvzf/" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-blue">
@@ -54,7 +74,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </article>
 
-      <!-- Card 2: Why We Can't Stop Ignoring Books -->
+      <!-- Card 4: Why We Can't Stop Ignoring Books -->
       <article class="card">
         <div class="card-accent card-accent-teal"></div>
         <div class="card-body">
@@ -73,6 +93,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
       </article>
+
+      <!-- Card 5: 2025 Lookback -->
+      <article class="card">
+        <div class="card-accent card-accent-blue"></div>
+        <div class="card-body">
+          <div class="card-tag">
+            <svg class="tag-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>LinkedIn Post</span>
+          </div>
+          <h2 class="card-title">A Lookback at my 2025 Journey</h2>
+          <p class="card-desc">A reflection on my first full year after graduation, the skills I built, and the perspectives that changed me.</p>
+          <div class="card-footer">
+            <span class="card-meta">Posted on Linked • December 31, 2025 • 5 min read</span>
+            <a href={`${import.meta.env.BASE_URL}2025-lookback`} class="card-btn card-btn-blue">
+              Read Full Post
+              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
 
       <!-- Card 3: Dream a Fiction -->
       <article class="card">
@@ -93,27 +134,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
       </article>
-
-      <!-- Card 4: Goodreads Review -->
-      <article class="card">
-        <div class="card-accent card-accent-yellow"></div>
-        <div class="card-body">
-          <div class="card-tag card-tag-yellow">
-            <svg class="tag-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M17.346.026c.422-.083.859.037 1.179.325.346.284.55.705.557 1.153-.023.457-.247.88-.612 1.156l-2.182 1.748a.601.601 0 0 0-.255.43.52.52 0 0 0 .11.424 5.886 5.886 0 0 1 .832 6.58c-1.394 2.79-4.503 3.99-7.501 2.927a.792.792 0 0 0-.499-.01c-.224.07-.303.18-.453.383l-.014.02-.941 1.254s-.792.985.457.935c3.027-.119 3.817-.119 5.439-.01 2.641.18 3.806 1.903 3.806 3.275 0 1.623-1.036 3.383-3.809 3.383a117.46 117.46 0 0 0-5.517-.03c-.31.005-.597.013-.835.02-.228.006-.41.011-.52.011-.712 0-1.648-.186-1.66-1.068-.008-.729.624-1.12 1.11-1.172.43-.045.815.007 1.24.064.252.034.518.07.815.088.185.011.366.025.552.038.53.038 1.102.08 1.926.087.427.005.759.01 1.025.015.695.012.941.016 1.28-.015 1.248-.112 1.832-.61 1.832-1.376 0-.805-.584-1.264-1.698-1.414-1.564-.213-2.33-.163-3.72-.074a87.66 87.66 0 0 1-1.669.095c-.608.029-2.449.026-2.682-1.492-.053-.416-.073-1.116.807-2.325l.75-1.003c.36-.49.582-.898.053-1.559 0 0-.39-.468-.52-.638-1.215-1.587-1.512-4.08-.448-6.114 1.577-3.011 5.4-4.26 8.37-2.581.253.143.438.203.655.163.201-.032.27-.167.363-.344.02-.04.042-.082.067-.126.004-.01.241-.465.535-1.028l.734-1.41a1.493 1.493 0 0 1 1.041-.785ZM9.193 13.243c1.854.903 3.912.208 5.254-2.47 1.352-2.699.827-5.11-1.041-6.023C10.918 3.537 8.81 5.831 8.017 7.41c-1.355 2.698-.717 4.886 1.147 5.818Z"/></svg>
-            <span>Goodreads Book Review</span>
-          </div>
-          <h2 class="card-title">Detailed Book Review of "Take it Back" by Kia Abdullah</h2>
-          <p class="card-desc">A psychological thriller that left me reeling — and disagreeing. My 2-star review of Kia Abdullah's <em>Take it Back</em>, written as a South Asian reader with family ties to Britain.</p>
-          <div class="card-footer">
-            <span class="card-meta">Published on Goodreads • April 29, 2026 • 10 min read</span>
-            <a href={`${import.meta.env.BASE_URL}goodreads-review`} class="card-btn card-btn-yellow">
-              Read Full Review
-              <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </article>
-
     </div>
 
     <!-- On Writing footer -->
@@ -281,7 +301,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transform: scale(1.02);
   }
 
-  .card-btn-green  { background: linear-gradient(to right, #059669, #34d399); }
+  .card-btn-green  { background: linear-gradient(to right, #037752, #0eab71); }
   .card-btn-blue   { background: linear-gradient(to right, #1e40af, #3b82f6); }
   .card-btn-teal   { background: linear-gradient(to right, #0d9488, #0ea5e9); }
   .card-btn-purple { background: linear-gradient(to right, #7c3aed, #ec4899); }
@@ -337,4 +357,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       justify-content: center;
     }
   }
+
+  .card-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.card-btn-primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+
+.card-btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.card-btn-secondary {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #cbd5e1;
+}
+
+.card-btn-secondary:hover {
+  background: #f8fafc;
+}
 </style>
