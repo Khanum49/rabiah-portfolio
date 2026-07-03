@@ -22,7 +22,7 @@ const allDocs = await getCollection('docs');
 
 // Sort docs in the desired order
 const sortedDocs = allDocs.sort((a, b) => {
-  const order = ['linux-firewall', 'inter-vlan', 'esp32-overview', 'stm32-arm-cortex', 'rtos-vs-bare-metal'];
+  const order = ['open-source-contribution', 'linux-firewall', 'inter-vlan', 'esp32-overview', 'stm32-arm-cortex', 'rtos-vs-bare-metal'];
   return order.indexOf(a.slug) - order.indexOf(b.slug);
 });
 

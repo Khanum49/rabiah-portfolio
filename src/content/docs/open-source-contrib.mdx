@@ -1,0 +1,93 @@
+---
+title: "From Word to RST: My First Open Source Contribution"
+description: "How a gap in an open source Python library led to a merged pull request and what it taught me about documentation, testing, and AI-assisted engineering work."
+---
+
+import { Image } from 'astro:assets';
+import admonitions from '../../assets/images/open-source/admonitions.png';
+
+
+When I joined Xgrid, I knew almost nothing about docs-as-code. Technical writing itself was new to me in any professional sense. What I brought instead was an Electrical Engineering background, a habit of researching a problem until it made sense, and a willingness to sit with unfamiliar code until it stopped being unfamiliar.
+
+That combination was enough, eventually, to find a real gap in an open source tool, build a fix for it, and get a pull request merged.
+
+## The Problem
+
+One of my first real tasks was to fix something that had quietly been slowing the team down for a while. Our documentation workflow ran on Sphinx, which meant every deliverable needed clean, properly structured RST files. But the content itself was written in Word, and nothing in our pipeline converted it automatically in a way that matched our style guide.
+
+So it was done by hand. Every new documentation ticket, every release cycle, every new feature, someone sat down and manually rewrote Word content into RST syntax. With monthly release cycles and dozens of tickets, this added up to real time lost. Not because the work was difficult, but because it was repetitive in a way that pulled attention away from the parts of documentation that actually needed a writer's judgment.
+
+## Finding rstdoc
+
+I started looking for a better way and came across a small, lesser-known open source Python library called `rstdoc`. It did something genuinely useful: it converted a Word file to RST with a single command.
+
+The output, though, was rough. It did not follow our style guide, and the formatting was inconsistent enough that it needed real adjustment before it could sit inside our actual workflow.
+
+So I cloned it locally and started learning how it worked from the inside.
+
+I want to be honest about where I was starting from: I am an Electrical Engineer, not a software engineer. I did not walk into that codebase already knowing what to do. I read through the documentation, traced the logic across files, and slowly built a picture of how the pieces fit together. The core conversion logic lived in `fromdocx.py`. Once I understood that file, I had a place to start.
+
+As I adapted the library for our internal workflow, I noticed something else, a gap that had nothing to do with Xgrid's specific setup. The library did not know what to do with admonitions.
+
+## The Gap
+
+Admonitions are the labelled callout blocks that show up constantly in technical documentation, notes, warnings, cautions, tips. In a Word document, they typically look like this:
+
+```
+Note: The fields marked * are required.
+Warning: This action cannot be undone.
+```
+
+After conversion, `rstdoc` was outputting these as plain-text paragraphs. The labels survived, but they carried no semantic meaning and no special formatting. In a rendered Sphinx build, a warning looked identical to ordinary body text, which defeats the purpose of writing one.
+
+In proper Sphinx RST, they should look like this:
+
+```
+.. note:: The fields marked * are required.
+
+.. warning:: This action cannot be undone.
+```
+
+For more clarity, see below the original definition of an admonition from Sphinx documentation:
+ 
+<div class="my-6">
+  <Image src={admonitions} alt="How Sphinx admonitions look like" class="max-w-full h-auto rounded shadow-md" />
+</div>
+
+This was not a quirk specific to our style guide. It was a gap in the library itself, and anyone using `rstdoc` to convert documents containing admonitions would run into the same problem.
+
+## Building the Fix
+
+I set out to write a function that would close that gap, using AI as a collaborative tool throughout the process, to reason through edge cases, test against real documents, and refine the logic until it held up consistently.
+
+The result, `process_rst_admonitions()`, works by splitting the RST text into paragraphs and checking each one against a regex pattern. That pattern is flexible enough to catch admonition keywords regardless of capitalization or any bold and italic markers Pandoc sometimes wraps around them. When it finds a match, it identifies the directive type, strips any leftover formatting artifacts, and rebuilds the paragraph as a properly indented RST directive. Anything that is not an admonition passes through unchanged.
+
+It supports ten admonition types: note, warning, attention, caution, danger, error, hint, tip, important, and see also.
+
+Integrating it into the existing pipeline took a single added line:
+
+```python
+rst = process_rst_admonitions(rst)
+```
+
+I tested it across single-line admonitions, multi-line ones, mixed formatting, multiple types within the same document, and documents with no admonitions at all. It held up consistently without disrupting anything else in the conversion process.
+
+Writing the function was only part of the work. The harder part and the part that actually mattered, was understanding where the gap lived in the conversion pipeline, deciding how the fix should behave across edge cases, and validating that it worked correctly against real documents.
+
+## The Pull Request
+
+I forked the repository, made my changes, and wrote the pull request.
+
+The PR description is something I cared about the way I care about any documentation deliverable. I wrote a clear summary of the problem, included before-and-after examples of the transformation, listed every supported admonition type, documented the implementation logic, and addressed backwards compatibility. I also noted upfront that this was my first open source contribution and that I welcomed feedback.
+
+The maintainer merged it on January 28, 2026, with no revisions requested.
+
+## What This Taught Me
+
+A well-written PR description is, in its own right, a technical writing deliverable. I believe the reason this one went through cleanly is that the reviewer never had to guess at anything, the problem was clear, the solution was clear, and the testing was documented. That is simply good documentation, applied to code instead of a product.
+
+I also came away with a clearer sense of how AI fits into engineering work. It helped me think through the problem faster and iterate on the solution, but it did not replace the underlying judgment, understanding the codebase, deciding where the fix belonged, and confirming it actually worked. That part was mine.
+
+And the broader takeaway: you do not need to be a software engineer to contribute to open source. An engineering background, persistence with unfamiliar code, and the ability to communicate a technical decision clearly turned out to be enough to take a problem from discovery to a merged contribution.
+
+*Merged PR: <a href="https://github.com/rstdoc/rstdoc/pull/2" target="_blank" rel="noopener noreferrer">rstdoc/rstdoc#2</a>*

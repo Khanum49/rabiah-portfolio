@@ -15,187 +15,276 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout>
-  <div style="max-width: 1000px;" class="mx-auto px-4 sm:px-6 pt-24 pb-16">
-    <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl shadow-purple-200/50 p-6 sm:p-10 md:p-16" style="animation: fadeInUp 0.8s ease-out;">
+  <div class="page-wrapper">
+    <div class="page-card">
 
-      <h1 style="font-family: 'Playfair Display', serif;" class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-700 leading-tight mb-4 sm:mb-6">
-        Documentation Work
-      </h1>
-
-      <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-8 sm:mb-12">
+      <!-- ── Header ── -->
+      <h1 class="page-title">Documentation Work</h1>
+      <p class="page-subtitle">
         A selection of documentation projects focused on clarity, real-world use cases, and scalable structure.
       </p>
 
-      <hr class="border-gray-200 mb-8 sm:mb-12" />
+      <hr class="divider" />
 
-      <h2 style="font-family: 'Playfair Display', serif;" class="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 sm:mb-8">
-        Featured Documentation
-      </h2>
+      <!-- ── Featured Documentation ── -->
+      <section class="section">
+        <h2 class="section-heading">Featured Documentation</h2>
 
-      <div class="bg-gradient-to-br from-teal-50/50 to-blue-50/50 rounded-2xl p-5 sm:p-8 border border-teal-100/50 mb-6">
-        <h3 style="font-family: 'Playfair Display', serif;" class="text-xl sm:text-2xl font-semibold text-slate-700 mb-3 sm:mb-4">
-          Linux Firewall Configuration Guide
-        </h3>
-        <ul class="space-y-2 mb-5 sm:mb-6 text-gray-600 text-sm sm:text-base">
-          <li><strong class="text-slate-700">Tools:</strong> Ubuntu, UFW, GitHub Pages</li>
-          <li><strong class="text-slate-700">Focus:</strong> Beginner-friendly firewall setup</li>
-          <li><strong class="text-slate-700">Status:</strong> <span class="text-green-600 font-medium">Complete</span></li>
-        </ul>
-        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-          <a
-            href={joinPath(baseUrl, 'docs', 'linux-firewall')}
-            class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-medium transition-colors shadow-md text-sm text-center"
-          >
-            View Documentation
-          </a>
-          <a
-            href="https://github.com/Khanum49/linux-firewall-guide"
-            target="_blank"
-            class="bg-transparent hover:bg-gray-50 text-teal-600 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-medium border-2 border-teal-600 transition-colors text-sm text-center"
-          >
-            View Source on GitHub
-          </a>
-        </div>
-      </div>
-
-      <div class="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-5 sm:p-8 border border-purple-100/50 mb-8 sm:mb-12">
-        <h3 style="font-family: 'Playfair Display', serif;" class="text-xl sm:text-2xl font-semibold text-slate-700 mb-3 sm:mb-4">
-          Inter-VLAN Routing Configuration
-        </h3>
-        <ul class="space-y-2 mb-5 sm:mb-6 text-gray-600 text-sm sm:text-base">
-          <li><strong class="text-slate-700">Tools:</strong> Cisco Packet Tracer, Router-on-a-Stick</li>
-          <li><strong class="text-slate-700">Focus:</strong> Network segmentation and inter-VLAN communication</li>
-          <li><strong class="text-slate-700">Status:</strong> <span class="text-green-600 font-medium">Complete</span></li>
-        </ul>
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <a
-            href={joinPath(baseUrl, 'docs', 'inter-vlan')}
-            class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-medium transition-colors shadow-md text-sm text-center"
-          >
-            View Documentation
-          </a>
-        </div>
-      </div>
-
-      <hr class="border-gray-200 mb-8 sm:mb-12" />
-
-      <h2 style="font-family: 'Playfair Display', serif;" class="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 sm:mb-8">
-        Technical Articles
-      </h2>
-
-      <div class="grid gap-4 sm:gap-6 mb-8 sm:mb-12">
-        <div class="bg-gradient-to-br from-teal-50/50 to-blue-50/50 rounded-2xl p-5 sm:p-8 border border-teal-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            ESP32 Microcontroller: Features and Applications
-          </h3>
-          <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">Overview of ESP32 capabilities, IoT applications, and real-world project examples</p>
-          <div class="flex items-center gap-2 mb-3 sm:mb-4">
-            <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-medium">IoT</span>
-            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Embedded Systems</span>
+        <!-- Linux Firewall -->
+        <div class="doc-card doc-card-teal">
+          <div class="doc-card-inner">
+            <div class="doc-card-main">
+              <h3 class="doc-title">Linux Firewall Configuration Guide</h3>
+              <div class="doc-meta">
+                <span><strong>Tools:</strong> Ubuntu, UFW, GitHub Pages</span>
+                <span><strong>Focus:</strong> Beginner-friendly firewall setup</span>
+              </div>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'linux-firewall') + '#ufw-and-its-role-in-network-security'}>
+                    UFW and its role in network security
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'linux-firewall') + '#prerequisites-and-installation'}>
+                    Prerequisites and installation
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'linux-firewall') + '#how-to-setup-a-simple-firewall-rule'}>
+                    How to setup a simple firewall rule
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'linux-firewall') + '#step-5-verify-the-configuration'}>
+                    Verifying and testing your configuration
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="doc-card-actions">
+              <a href={joinPath(baseUrl, 'docs', 'linux-firewall')} class="btn btn-primary-teal">View Docs</a>
+              <a href="https://github.com/Khanum49/linux-firewall-guide" target="_blank" class="btn btn-outline-teal">GitHub</a>
+            </div>
           </div>
-          <a
-            href={joinPath(baseUrl, 'docs', 'esp32')}
-            class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 sm:px-6 sm:py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
-          >
-            Read Article
-          </a>
         </div>
 
-        <div class="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-5 sm:p-8 border border-purple-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            STM32 and ARM Cortex-M: Architecture and Applications
-          </h3>
-          <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">Understanding STM32 microcontrollers and ARM Cortex-M processor architecture</p>
-          <div class="flex items-center gap-2 mb-3 sm:mb-4">
-            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">ARM</span>
-            <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Microcontrollers</span>
+        <!-- Inter-VLAN -->
+        <div class="doc-card doc-card-purple">
+          <div class="doc-card-inner">
+            <div class="doc-card-main">
+              <h3 class="doc-title">Inter-VLAN Routing Configuration</h3>
+              <div class="doc-meta">
+                <span><strong>Tools:</strong> Cisco Packet Tracer, Router-on-a-Stick</span>
+                <span><strong>Focus:</strong> Network segmentation and inter-VLAN communication</span>
+              </div>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'inter-vlan') + '#what-is-inter-vlan-routing'}>
+                    What Inter-VLAN routing is and why it's needed
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'inter-vlan') + '#lab-scenario'}>
+                    Three-department lab scenario (IT, Management, HR)
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'inter-vlan') + '#how-to-configure-inter-vlan-routing'}>
+                    Step-by-step Cisco Packet Tracer configuration
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'inter-vlan') + '#step-6-verify-the-configuration'}>
+                    Verifying connectivity across VLANs
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="doc-card-actions">
+              <a href={joinPath(baseUrl, 'docs', 'inter-vlan')} class="btn btn-primary-purple">View Docs</a>
+            </div>
           </div>
-          <a
-            href={joinPath(baseUrl, 'docs', 'stm32')}
-            class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 sm:px-6 sm:py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
-          >
-            Read Article
-          </a>
         </div>
+      </section>
 
-        <div class="bg-gradient-to-br from-teal-50/50 to-blue-50/50 rounded-2xl p-5 sm:p-8 border border-teal-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            RTOS vs Bare Metal Firmware: Choosing the Right Approach
-          </h3>
-          <p class="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">Comparing Real-Time Operating Systems and Bare Metal programming for embedded systems</p>
-          <div class="flex items-center gap-2 mb-3 sm:mb-4">
-            <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-medium">RTOS</span>
-            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">Firmware</span>
+      <hr class="divider" />
+
+      <!-- ── Technical Articles ── -->
+      <section class="section">
+        <h2 class="section-heading">Technical Articles</h2>
+
+        <div class="articles-grid">
+
+          <!-- ESP32 -->
+          <div class="article-card article-card-teal">
+            <div class="article-top">
+              <h3 class="article-title">ESP32 Microcontroller: Features and Applications</h3>
+              <p class="article-desc">Overview of ESP32 capabilities, IoT applications, and real-world project examples</p>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'esp32') + '#what-makes-esp32-special-vs-esp8266'}>
+                    What makes ESP32 special vs ESP8266
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'esp32') + '#key-features-and-functionality'}>
+                    GPIO, Wi-Fi, Bluetooth, and ADC features
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'esp32') + '#project-examples'}>
+                    11+ real-world project examples
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="article-footer">
+              <div class="tags">
+                <span class="tag tag-teal">IoT</span>
+                <span class="tag tag-blue">Embedded Systems</span>
+              </div>
+              <a href={joinPath(baseUrl, 'docs', 'esp32')} class="btn btn-primary-teal btn-sm">Read Article</a>
+            </div>
           </div>
-          <a
-            href={joinPath(baseUrl, 'docs', 'rtos-baremetal')}
-            class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2 sm:px-6 sm:py-2.5 rounded-lg font-medium transition-colors shadow-md text-sm inline-block"
-          >
-            Read Article
-          </a>
+
+          <!-- STM32 -->
+          <div class="article-card article-card-purple">
+            <div class="article-top">
+              <h3 class="article-title">STM32 and ARM Cortex-M: Architecture and Applications</h3>
+              <p class="article-desc">Understanding STM32 microcontrollers and ARM Cortex-M processor architecture</p>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'stm32') + '#arm-cortex-m-series'}>
+                    ARM Cortex-M series and core characteristics
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'stm32') + '#common-architecture'}>
+                    RISC and Harvard architecture explained
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'stm32') + '#memory-hierarchy'}>
+                    Flash, SRAM, and memory hierarchy
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="article-footer">
+              <div class="tags">
+                <span class="tag tag-purple">ARM</span>
+                <span class="tag tag-pink">Microcontrollers</span>
+              </div>
+              <a href={joinPath(baseUrl, 'docs', 'stm32')} class="btn btn-primary-purple btn-sm">Read Article</a>
+            </div>
+          </div>
+
+          <!-- RTOS -->
+          <div class="article-card article-card-teal">
+            <div class="article-top">
+              <h3 class="article-title">RTOS vs Bare Metal Firmware: Choosing the Right Approach</h3>
+              <p class="article-desc">Comparing Real-Time Operating Systems and Bare Metal programming for embedded systems</p>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'rtos-baremetal') + '#what-is-rtos'}>
+                    What RTOS is and how scheduling works
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'rtos-baremetal') + '#what-is-bare-metal-firmware'}>
+                    What bare metal programming means in practice
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'rtos-baremetal') + '#detailed-comparison'}>
+                    Side-by-side comparison tables and decision guide
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="article-footer">
+              <div class="tags">
+                <span class="tag tag-teal">RTOS</span>
+                <span class="tag tag-blue">Firmware</span>
+              </div>
+              <a href={joinPath(baseUrl, 'docs', 'rtos-baremetal')} class="btn btn-primary-teal btn-sm">Read Article</a>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
 
-      <hr class="border-gray-200 mb-8 sm:mb-12" />
+      <hr class="divider" />
 
-      <h2 style="font-family: 'Playfair Display', serif;" class="text-2xl sm:text-3xl font-bold text-slate-700 mb-6 sm:mb-8">
-        In Progress Technical Content Pieces
-      </h2>
+      <!-- ── Case Studies & Experiments ── -->
+      <section class="section">
+        <h2 class="section-heading">Case Studies & Experiments</h2>
 
-      <div class="grid gap-4 sm:gap-6 mb-8 sm:mb-12">
-        <div class="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-5 sm:p-8 border border-purple-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            Sphinx Documentation Project Walkthrough
-          </h3>
-          <p class="text-gray-600 mb-1 text-sm sm:text-base"><strong>Status:</strong> Writing</p>
-          <p class="text-gray-600 text-sm sm:text-base">Includes custom CSS and a feedback button experiment</p>
+        <div class="doc-card doc-card-teal">
+          <div class="doc-card-inner">
+            <div class="doc-card-main">
+              <h3 class="doc-title">How I Made My First Open Source Contribution With a Little Vibe Coding</h3>
+              <div class="doc-meta">
+                <span><strong>Project:</strong> rstdoc (Python, open source)</span>
+                <span><strong>Type:</strong> Bug fix + feature addition</span>
+              </div>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-problem'}>
+                    The Word → RST conversion problem slowing the team down
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-gap'}>
+                    The admonition gap nobody had fixed yet
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#building-the-fix'}>
+                    Building process_rst_admonitions() with AI
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-pull-request'}>
+                    Why the PR merged with no revisions requested
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="doc-card-actions">
+              <a href={joinPath(baseUrl, 'docs', 'open-source-contrib')} class="btn btn-primary-teal">Read Article</a>
+              <a href="https://github.com/rstdoc/rstdoc/pull/2" target="_blank" class="btn btn-outline-teal-two">GitHub</a>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="bg-gradient-to-br from-teal-50/50 to-blue-50/50 rounded-2xl p-5 sm:p-8 border border-teal-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            Open Source Contribution Walkthrough
-          </h3>
-          <p class="text-gray-600 mb-1 text-sm sm:text-base"><strong>Status:</strong> Writing</p>
-          <p class="text-gray-600 text-sm sm:text-base">Documenting the process of contributing to an open-source documentation project</p>
+      <hr class="divider" />
+
+      <!-- ── In Progress ── -->
+      <section class="section">
+        <h2 class="section-heading">In Progress</h2>
+        <div class="in-progress-grid">
+          <div class="in-progress-item">
+            <span class="in-progress-dot"></span>
+            <div>
+              <p class="in-progress-title">Sphinx Documentation Project Walkthrough</p>
+              <p class="in-progress-desc">Custom CSS theming and feedback button experiment</p>
+            </div>
+          </div>
+          <div class="in-progress-item">
+            <span class="in-progress-dot"></span>
+            <div>
+              <p class="in-progress-title">How I Built This Portfolio with Astro and Claude</p>
+              <p class="in-progress-desc">A complete vibecoding journey from scratch</p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="bg-gradient-to-br from-purple-50/50 to-pink-50/50 rounded-2xl p-5 sm:p-8 border border-purple-100/50">
-          <h3 style="font-family: 'Playfair Display', serif;" class="text-lg sm:text-xl font-semibold text-slate-700 mb-2 sm:mb-3">
-            How I created this Portfolio using Astro and Claude
-          </h3>
-          <p class="text-gray-600 mb-1 text-sm sm:text-base"><strong>Status:</strong> Writing</p>
-          <p class="text-gray-600 text-sm sm:text-base">Includes a complete journey of how I made this portfolio from scratch using vibecoding</p>
-        </div>
-      </div>
-
-      <hr class="border-gray-200 mb-8 sm:mb-12" />
-
-      <h2 style="font-family: 'Playfair Display', serif;" class="text-2xl sm:text-3xl font-bold text-slate-700 mb-4 sm:mb-6">
-        Open Source Contribution
-      </h2>
-
-      <p class="text-gray-600 leading-relaxed mb-5 sm:mb-6 text-sm sm:text-base">
-        Merged contribution to an open-source documentation project (rstdoc). Successfully contributed documentation improvements and fixes to help improve the project's clarity and usability.
-      </p>
-
-      <a
-        href="https://github.com/rstdoc/rstdoc/pull/2"
-        target="_blank"
-        class="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl font-medium transition-colors shadow-md text-sm inline-flex items-center gap-2"
-      >
-        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        View on GitHub
-      </a>
-
-      <div class="mt-10 sm:mt-12">
-        <a
-          href={baseUrl}
-          class="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center text-sm sm:text-base"
-        >
-          ← Back to Home
-        </a>
+      <div class="back-link">
+        <a href={baseUrl}>← Back to Home</a>
       </div>
 
     </div>
@@ -203,8 +292,310 @@ const baseUrl = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <style>
+  /* ── Layout ── */
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 6.5rem 1.5rem 4rem; /* top clears fixed navbar */
+  }
+
+  .page-card {
+    max-width: 1000px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
+    padding: 3.5rem 3rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Header ── */
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
+  }
+
+  .page-subtitle {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.75rem 0;
+  }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 0; }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Featured doc cards (horizontal layout) ── */
+  .doc-card {
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .doc-card-teal   { background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border-color: #99f6e4; }
+  .doc-card-purple { background: linear-gradient(135deg, #faf5ff, #f0e6ff); border-color: #ddd6fe; }
+
+  .doc-card-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .doc-card-main { flex: 1; }
+
+  .doc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    font-size: 0.775rem;
+    color: #475569;
+    margin-bottom: 0.7rem;
+  }
+
+  .doc-meta strong { color: #1e293b; }
+
+  .doc-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    align-items: flex-end;
+    padding-top: 0.15rem;
+  }
+
+  /* ── Section preview (Option A + C) ── */
+  .section-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .section-preview li {
+    font-size: 0.775rem;
+    color: #475569;
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+
+  .section-preview li::before {
+    content: '›';
+    color: #0d9488;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-preview a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .section-preview a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ── Technical Articles grid ── */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .article-card {
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .article-card-teal   { background: linear-gradient(135deg, #f0fdf4, #e0f2fe); border-color: #99f6e4; }
+  .article-card-purple { background: linear-gradient(135deg, #faf5ff, #f0e6ff); border-color: #ddd6fe; }
+
+  .article-top { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.35;
+  }
+
+  .article-desc {
+    font-size: 0.775rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .article-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+  }
+
+  .tag-teal   { background: #ccfbf1; color: #0f766e; }
+  .tag-blue   { background: #dbeafe; color: #1d4ed8; }
+  .tag-purple { background: #ede9fe; color: #6d28d9; }
+  .tag-pink   { background: #fce7f3; color: #be185d; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1.1rem;
+    border-radius: 99px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-sm { padding: 0.35rem 0.85rem; font-size: 0.75rem; }
+
+  .btn-primary-teal   { background: #0d9488; color: #fff; }
+  .btn-primary-purple { background: #7c3aed; color: #fff; }
+
+  .btn-outline-teal {
+    background: transparent;
+    color: #0d9488;
+    border: 1.5px solid #0d9488;
+    padding: 0.43rem 1.61rem;
+  }
+
+  .btn-outline-teal-two {
+    background: transparent;
+    color: #0d9488;
+    border: 1.5px solid #0d9488;
+    padding: 0.43rem 2.0rem;
+  }
+
+  /* ── In Progress ── */
+  .in-progress-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .in-progress-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .in-progress-dot {
+    width: 8px;
+    height: 8px;
+    background: #f59e0b;
+    border-radius: 99px;
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+  }
+
+  .in-progress-title {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.1rem;
+  }
+
+  .in-progress-desc {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  /* ── Back link ── */
+  .back-link { margin-top: 1.5rem; }
+
+  .back-link a {
+    font-size: 0.85rem;
+    color: #0d9488;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .back-link a:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .page-card { padding: 1.75rem 1.25rem; border-radius: 1.5rem; }
+
+    .doc-card-inner {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .doc-card-actions {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .articles-grid { grid-template-columns: 1fr; }
   }
 </style>
