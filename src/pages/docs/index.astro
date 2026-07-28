@@ -110,6 +110,89 @@ const baseUrl = import.meta.env.BASE_URL;
 
       <hr class="divider" />
 
+      <!-- ── Case Studies & Experiments ── -->
+      <section class="section">
+        <h2 class="section-heading">Case Studies & Experiments</h2>
+
+        <div class="doc-card doc-card-teal">
+          <div class="doc-card-inner">
+            <div class="doc-card-main">
+              <h3 class="doc-title">How I Made My First Open Source Contribution</h3>
+              <div class="doc-meta">
+                <span><strong>Project:</strong> rstdoc (Python, open source)</span>
+                <span><strong>Type:</strong> Bug fix + feature addition</span>
+              </div>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-problem'}>
+                    The Word → RST conversion problem slowing the team down
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-gap'}>
+                    The admonition gap nobody had fixed yet
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#building-the-fix'}>
+                    Building process_rst_admonitions() with AI
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-pull-request'}>
+                    Why the PR merged with no revisions requested
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="doc-card-actions">
+              <a href={joinPath(baseUrl, 'docs', 'open-source-contrib')} class="btn btn-primary-teal">Read Article</a>
+              <a href="https://github.com/rstdoc/rstdoc/pull/2" target="_blank" class="btn btn-outline-teal-two">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Documentation Sample reflection -->
+        <div class="doc-card doc-card-purple">
+          <div class="doc-card-inner">
+            <div class="doc-card-main">
+              <h3 class="doc-title">What I Learned Building My First API Documentation Sample</h3>
+              <div class="doc-meta">
+                <span><strong>Reference:</strong> Postman Academy API documentation course</span>
+                <span><strong>Type:</strong> Reflective writing + documentation breakdown</span>
+              </div>
+              <ul class="section-preview">
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'api-docs-article') + '#the-four-qualities-that-actually-matter'}>
+                    The four qualities that make API docs worth reading
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'api-docs-article') + '#structure-is-architecture'}>
+                    Why documentation structure is architecture, not housekeeping
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'api-docs-article') + '#what-goes-inside-each-endpoint'}>
+                    What goes inside each endpoint entry
+                  </a>
+                </li>
+                <li>
+                  <a href={joinPath(baseUrl, 'docs', 'api-docs-article') + '#the-mock-api-problem-and-one-honest-solution'}>
+                    Documenting a fictional API with a real mock backend
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="doc-card-actions">
+              <a href={joinPath(baseUrl, 'docs', 'api-docs-article')} class="btn btn-primary-purple">Read Article</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
       <!-- ── Technical Articles ── -->
       <section class="section">
         <h2 class="section-heading">Technical Articles</h2>
@@ -212,51 +295,6 @@ const baseUrl = import.meta.env.BASE_URL;
             </div>
           </div>
 
-        </div>
-      </section>
-
-      <hr class="divider" />
-
-      <!-- ── Case Studies & Experiments ── -->
-      <section class="section">
-        <h2 class="section-heading">Case Studies & Experiments</h2>
-
-        <div class="doc-card doc-card-teal">
-          <div class="doc-card-inner">
-            <div class="doc-card-main">
-              <h3 class="doc-title">How I Made My First Open Source Contribution</h3>
-              <div class="doc-meta">
-                <span><strong>Project:</strong> rstdoc (Python, open source)</span>
-                <span><strong>Type:</strong> Bug fix + feature addition</span>
-              </div>
-              <ul class="section-preview">
-                <li>
-                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-problem'}>
-                    The Word → RST conversion problem slowing the team down
-                  </a>
-                </li>
-                <li>
-                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-gap'}>
-                    The admonition gap nobody had fixed yet
-                  </a>
-                </li>
-                <li>
-                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#building-the-fix'}>
-                    Building process_rst_admonitions() with AI
-                  </a>
-                </li>
-                <li>
-                  <a href={joinPath(baseUrl, 'docs', 'open-source-contrib') + '#the-pull-request'}>
-                    Why the PR merged with no revisions requested
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="doc-card-actions">
-              <a href={joinPath(baseUrl, 'docs', 'open-source-contrib')} class="btn btn-primary-teal">Read Article</a>
-              <a href="https://github.com/rstdoc/rstdoc/pull/2" target="_blank" class="btn btn-outline-teal-two">GitHub</a>
-            </div>
-          </div>
         </div>
       </section>
 

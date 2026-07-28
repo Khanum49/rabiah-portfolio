@@ -1,0 +1,84 @@
+---
+title: "What I Learned Building My First API Documentation Sample"
+description: "Reflections on building a portfolio API documentation sample, and what the Postman Academy course taught me about writing docs that actually serve developers."
+---
+
+I have been a technical writer for just over a year, and for most of that time, API documentation sat at the edge of my awareness like something I kept meaning to get to. I knew it was important. Every job description I read either listed it as a requirement or mentioned it somewhere between "nice to have" and "strongly preferred." But I kept circling around it, documenting networking tools and BI dashboards and HubSpot workflows, always finding a reason to defer the inevitable.
+
+What finally pushed me was a Postman Academy course on authoring API documentation. I went in expecting a tutorial on buttons and menus. What I came out with was a framework for thinking about documentation from the reader's perspective rather than the writer's, which, embarrassingly, is not always the default.
+
+This article is an attempt to document what I learned, not just the technical mechanics, but the thinking that underpins good API documentation and why it is harder than it looks. If you are a technical writer who has been putting off API docs the way I was, or a newcomer trying to understand what the fuss is about, I hope this is useful to you.
+
+## What an API Actually Is (and Why Writers Need to Understand It)
+
+Before I could document anything, I had to stop treating API as an acronym I understood conceptually but could not explain precisely. An API, or Application Programming Interface, is a contract between two programs. One program, the client, sends a request to another, the server, and the server sends back a response. REST APIs, which are the most common kind and the kind I worked with here, use HTTP, the same protocol your browser uses to load a webpage.
+
+Every REST API interaction has the same anatomy. There is an endpoint, which is the URL being called. There is a method, which describes what you are doing (GET to read something, POST to create something, PUT or PATCH to update it, DELETE to remove it). There are headers, which carry metadata like authentication tokens. There is sometimes a request body, which contains data you are sending. And there is a response, which comes back as JSON with an HTTP status code telling you whether things went well or not.
+
+Understanding this structure matters because it determines how you document. Every endpoint needs its method and path explained. Every parameter needs its type, whether it is required, and what values it accepts. Every response needs an example that shows exactly what comes back. And every failure mode needs a code and a plain-English explanation of what went wrong. Once I understood the anatomy of a request, I understood the anatomy of a documentation page.
+
+## The Four Qualities That Actually Matter
+
+The Postman course defines four qualities that make API documentation worth reading: complete, accurate, clear, and discoverable. These sound obvious until you try to apply them.
+
+**Complete** means every endpoint, every parameter, and every response code is documented. No gaps. If it can be called, it must be documented. The trap here is assuming that some things are self-explanatory. They are not, at least not to someone who is encountering your API for the first time at eleven o'clock at night trying to ship a feature before a deadline.
+
+**Accurate** means the documentation stays in sync with the API. This is harder than it sounds when an API is actively changing. Stale documentation is arguably worse than no documentation at all, because it actively misleads. A developer who follows outdated instructions ships a broken integration. The support burden that follows is entirely preventable.
+
+**Clear** means writing in consumer-facing language rather than implementation language. This distinction took me a while to internalize. Implementation language describes what the server does internally. Consumer-facing language describes what the developer gets to do. "The endpoint returns a paginated list of devices" is consumer-facing. "The handler queries the database and serializes the result set" is not. One of these helps a developer. The other does not.
+
+**Discoverable** means the documentation can actually be found. This is partly a structural concern, since documentation buried three clicks deep from the main product page will not be read, but it is also a writing concern. Sections need to be named plainly. Navigation needs to be logical. A developer should be able to find what they need without reading everything first.
+
+## Structure Is Architecture
+
+One of the more counterintuitive things I learned from the Postman course is that the structure of a documentation set is not organizational housekeeping. It is architecture. The order in which sections appear, and the way they relate to each other, determines whether a developer can get started quickly or has to read everything before understanding anything.
+
+The structure I landed on for my sample reflects this directly.
+
+I open with an **Introduction** that answers three questions before anything else: what does this API do, who is it for, and what can someone actually build with it. The temptation is to lead with technical metadata, the base URL, the rate limit, the authentication scheme. But a developer who has just landed on your documentation for the first time is not yet ready for those details. They need enough context to decide whether they are in the right place. Metadata belongs lower on the page, after the reader has decided to stay.
+
+The **Getting Started** section comes next, and its sole job is to get a developer from zero to their first successful API call as quickly as possible. Three steps: get a token, make one request, see that it works. The goal is not to explain everything upfront. It is to get the developer to a working call as quickly as possible, so they can build from there. The Postman course frames this as the first thing a consumer needs, and I think that framing is right. A developer who cannot make a successful call in the first five minutes will often give up and look for a different API.
+
+**Authentication** comes before any endpoint reference, because it is a blocker. Without understanding authentication, a developer cannot call a single endpoint successfully. And it needs to be more than a code snippet. My authentication section includes a property table answering every follow-up question I could anticipate: what is the scheme, what is the exact header name, is the token per account or per project, when does it expire, where do you go to get one. Completeness here is not overkill. It is the difference between a developer who can self-serve and one who files a support ticket.
+
+The **endpoint reference** is organized into logical groups, which in Postman would be folders. Postman's course makes the point explicitly: folder hierarchy in a collection maps directly to section structure in the documentation, and request order within a folder controls reading order. For my sample, all device-related endpoints sit together under a Devices section, and they appear in a natural workflow order: list devices, get a specific device, register a new device. A developer should be able to read the endpoint reference the way they would use the API, one workflow at a time.
+
+The **error codes reference** lives at the end, under a Reference section, because it is lookup material rather than reading material. A developer does not read an error table from top to bottom. They go back to it when something breaks. Putting it at the end, in a clearly labeled section, makes it easy to find without making it interrupt the flow of everything else.
+
+## What Goes Inside Each Endpoint
+
+Each endpoint in my sample follows the same pattern, which I arrived at through the Postman course.
+
+The **description** comes first and does two things: it explains what the endpoint does, and it explains when a developer would use it. "Returns a list of devices" is not enough. "Returns a paginated list of all devices registered in your project. Use this endpoint to build dashboards, run status checks, or identify devices that need a firmware update" is better, because it gives the developer a reason to care.
+
+The **parameter table** documents every parameter with its name, type, whether it is required, and a description that goes beyond the parameter name. The description column is where most API documentation falls short. Writing `status` as the name and `Device status` as the description tells a developer nothing they could not infer. Writing "Filter by device status. Accepted values: online, offline, error. Omit to return all devices" tells them exactly what they need to know.
+
+The **request example** shows the call in code. I included both curl and JavaScript for each endpoint, because different readers have different contexts. Curl is the universal fallback, available on any machine with no setup required, which makes it the right choice for a Getting Started section where simplicity matters most. JavaScript serves developers building web applications. The examples use realistic values rather than placeholder strings wherever possible, because realistic examples are faster to adapt.
+
+The **response example** is named, not anonymous. This is a distinction the Postman course makes explicitly, and it is a good one. "200 OK" tells a developer the status. "200 OK — Three online devices returned, newest first" tells them what the response actually represents in context. For the POST endpoint, I included two named examples: a `201 Created` response showing a successfully registered device, and a `400 Bad Request` response showing what the error object looks like when a required field is missing. Showing failure alongside success is part of what it means to be complete.
+
+## The Mock API Problem (and One Honest Solution)
+
+One challenge specific to portfolio documentation is that you cannot document a real API you do not have access to, and building a real backend for a portfolio piece is beyond the scope of what makes sense. The solution I used was to document a fictional API, the IoT Device Management API for managing ESP32 and STM32 microcontrollers, while using JSONPlaceholder as a live mock backend for the interactive demos.
+
+JSONPlaceholder is a public API that accepts real HTTP requests and returns real JSON responses without any configuration or authentication. It exists specifically for demos and testing. My "Try it" buttons make actual HTTP calls to JSONPlaceholder's endpoints and remap the generic responses into device-shaped objects, so a visitor sees `ESP32-WROOM-32` and `status: online` rather than post titles and user IDs. The remapping happens in JavaScript in the browser. The HTTP call is real. The data transformation is mine.
+
+I want to be upfront about this when sharing the work. The API is fictional, yes, but the documentation decisions behind it are not. I had to understand enough about embedded systems to write about ESP32 and STM32 devices with any credibility. I had to structure the sections in a way that actually serves a developer. I had to write parameter descriptions that go beyond restating the parameter name. And I had to figure out how to make the demos interactive without a real backend. Those were real problems I worked through, and the sample reflects that.
+
+## A Note on Writing for Developers
+
+API documentation has a reputation for being dry, and some of that reputation is earned. But I think the dryness comes from a misunderstanding of who the audience is. Developers are not all the same. They have different levels of experience, different contexts, different time pressures. Some are reading your documentation at the beginning of an integration project, with space to explore. Others are reading it at two in the morning, trying to figure out why a call is returning a 401, with no patience for anything that is not immediately useful.
+
+Writing for both readers at once requires a structure that lets each find what they need without reading what they do not. The Introduction and Getting Started sections serve the first reader. The endpoint reference and error table serve the second. The navigation sidebar makes both sections findable in seconds.
+
+What I try to hold onto when writing any technical documentation, API or otherwise, is the principle that the reader's time is more valuable than my word count. Every sentence should earn its place. If removing a sentence does not change what a developer can do with the information, the sentence should go.
+
+## What I Would Do Differently
+
+Looking back at the sample now, there are things I would add if this were live documentation for a real API. I would include a changelog so developers know when the API changed and what the impact on their integration might be. I would add rate limit headers to the response examples, since knowing how to read the `Retry-After` header is as important as knowing the rate limit exists. I would include a pagination guide showing how `limit` and `page` work together across a large dataset. And I would consider a Postman collection link, a published Postman workspace that developers could fork and run immediately, because seeing the collection alongside the docs closes the gap between reading and doing.
+
+These are not gaps in understanding. They are gaps in scope, which is something different. Knowing what is missing and why it is missing is its own kind of competence.
+
+Building this sample taught me that API documentation is not a genre apart from other forms of technical writing. It has the same core requirement: understand your reader, give them what they need, and get out of the way. The tools are different, the vocabulary is different, and the structure is more constrained, but the fundamental act of translating complexity into clarity is the same work I have been doing since my first internship.
+
+I am glad I stopped deferring it.
