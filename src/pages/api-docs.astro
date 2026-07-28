@@ -3,6 +3,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="API Documentation - Rabiah Khanum">
+  <style>
+    /* Consistent, visible horizontal-scroll affordance everywhere it can occur
+       (code blocks and data tables) so behavior never differs between them. */
+    .h-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
+    }
+    .h-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+    .h-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .h-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(148, 163, 184, 0.6);
+      border-radius: 9999px;
+    }
+  </style>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-teal-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
 
@@ -91,19 +111,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 </ul>
               </div>
               <div class="grid grid-cols-2 gap-4">
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 min-w-0">
                   <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Base URL</p>
-                  <code class="text-xs font-mono text-teal-700">api.iotfleet.example.com/v1</code>
+                  <code class="text-xs font-mono text-teal-700 break-all">api.iotfleet.example.com/v1</code>
                 </div>
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 min-w-0">
                   <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Protocol</p>
                   <p class="text-sm font-medium text-slate-800">HTTPS only</p>
                 </div>
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 min-w-0">
                   <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Response Format</p>
                   <p class="text-sm font-medium text-slate-800">JSON</p>
                 </div>
-                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 min-w-0">
                   <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Rate Limit</p>
                   <p class="text-sm font-medium text-slate-800">1,000 req / hour</p>
                 </div>
@@ -121,14 +141,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <ol class="space-y-4">
                 <li class="flex gap-4">
                   <span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">1</span>
-                  <div>
+                  <div class="min-w-0">
                     <p class="font-semibold text-slate-800 mb-1">Create an account and generate an API token</p>
                     <p class="text-slate-600">Sign in to the IotFleet dashboard, navigate to <strong>Settings &rarr; API Tokens</strong>, and create a new token scoped to your project. Copy the token. It will not be shown again.</p>
                   </div>
                 </li>
                 <li class="flex gap-4">
                   <span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">2</span>
-                  <div>
+                  <div class="min-w-0">
                     <p class="font-semibold text-slate-800 mb-1">Make your first request</p>
                     <p class="text-slate-600 mb-3">Run the following command, replacing <code class="bg-slate-100 px-1 rounded font-mono">YOUR_API_TOKEN</code> with the token you just generated. A successful response returns a <code class="bg-slate-100 px-1 rounded font-mono">200 OK</code> with a JSON list of devices.</p>
                     <!-- slim single-bar code block -->
@@ -140,14 +160,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                           <svg class="check-icon w-3.5 h-3.5 hidden text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                         </button>
                       </div>
-                      <pre id="quickstart-curl" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices"</span> \
+                      <pre id="quickstart-curl" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices"</span> \
   -H <span class="text-yellow-300">"Authorization: Bearer YOUR_API_TOKEN"</span></pre>
                     </div>
                   </div>
                 </li>
                 <li class="flex gap-4">
                   <span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">3</span>
-                  <div>
+                  <div class="min-w-0">
                     <p class="font-semibold text-slate-800 mb-1">Register your first device</p>
                     <p class="text-slate-600">Once you can list devices, use the <a href="#post-device" class="text-teal-600 underline">Register Device</a> endpoint to add your first ESP32 or STM32 unit to the fleet. From there, the <a href="#get-device-id" class="text-teal-600 underline">Get Device</a> endpoint lets you inspect its status and configuration at any time.</p>
                   </div>
@@ -174,10 +194,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <svg class="check-icon w-3.5 h-3.5 hidden text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   </button>
                 </div>
-                <pre id="auth-example" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-slate-400">Authorization:</span> <span class="text-teal-400">Bearer YOUR_API_TOKEN</span></pre>
+                <pre id="auth-example" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-slate-400">Authorization:</span> <span class="text-teal-400">Bearer YOUR_API_TOKEN</span></pre>
               </div>
               <div class="border border-slate-200 rounded-xl overflow-hidden">
-                <table class="w-full text-xs">
+                <div class="h-scroll">
+                <table class="w-full text-xs min-w-[420px]">
                   <thead class="bg-slate-50">
                     <tr>
                       <th class="text-left px-4 py-3 font-semibold text-slate-600">Property</th>
@@ -207,6 +228,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </tr>
                   </tbody>
                 </table>
+                </div>
               </div>
               <div class="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4">
                 <svg class="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
@@ -237,7 +259,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div>
                 <h4 class="font-semibold text-slate-800 mb-3">Query Parameters</h4>
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
-                  <table class="w-full text-xs">
+                  <div class="h-scroll">
+                  <table class="w-full text-xs min-w-[640px]">
                     <thead class="bg-slate-50">
                       <tr>
                         <th class="text-left px-4 py-3 font-semibold text-slate-600">Parameter</th>
@@ -267,6 +290,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
 
@@ -285,12 +309,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
                   <div id="get-devices-curl" class="tab-panel bg-slate-900">
-                    <pre id="get-devices-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices?status=online&limit=10"</span> \
+                    <pre id="get-devices-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices?status=online&limit=10"</span> \
   -H <span class="text-yellow-300">"Authorization: Bearer YOUR_API_TOKEN"</span> \
   -H <span class="text-yellow-300">"Content-Type: application/json"</span></pre>
                   </div>
                   <div id="get-devices-js" class="tab-panel hidden bg-slate-900">
-                    <pre id="get-devices-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
+                    <pre id="get-devices-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
   <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices?status=online&limit=10"</span>,
   &#123;
     method: <span class="text-yellow-300">"GET"</span>,
@@ -317,7 +341,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </button>
                   </div>
                   <!-- point 7: consistent id dev_000001 / name sensor-node-01 throughout -->
-                  <pre id="get-devices-response" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto">&#123;
+                  <pre id="get-devices-response" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll">&#123;
   <span class="text-teal-300">"total"</span>: 3,
   <span class="text-teal-300">"page"</span>: 1,
   <span class="text-teal-300">"devices"</span>: [
@@ -345,7 +369,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     Run
                   </button>
                 </div>
-                <div id="result-get-devices" class="hidden bg-slate-900 rounded-lg p-4 overflow-x-auto">
+                <div id="result-get-devices" class="hidden bg-slate-900 rounded-lg p-4 h-scroll">
                   <pre class="text-xs font-mono text-slate-100 result-text"></pre>
                 </div>
               </div>
@@ -368,7 +392,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div>
                 <h4 class="font-semibold text-slate-800 mb-3">Path Parameters</h4>
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
-                  <table class="w-full text-xs">
+                  <div class="h-scroll">
+                  <table class="w-full text-xs min-w-[640px]">
                     <thead class="bg-slate-50">
                       <tr>
                         <th class="text-left px-4 py-3 font-semibold text-slate-600">Parameter</th>
@@ -386,6 +411,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
 
@@ -404,12 +430,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
                   <div id="get-device-curl" class="tab-panel bg-slate-900">
-                    <pre id="get-device-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices/dev_000001"</span> \
+                    <pre id="get-device-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-teal-400">curl</span> -X GET <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices/dev_000001"</span> \
   -H <span class="text-yellow-300">"Authorization: Bearer YOUR_API_TOKEN"</span> \
   -H <span class="text-yellow-300">"Content-Type: application/json"</span></pre>
                   </div>
                   <div id="get-device-js" class="tab-panel hidden bg-slate-900">
-                    <pre id="get-device-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
+                    <pre id="get-device-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
   <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices/dev_000001"</span>,
   &#123;
     method: <span class="text-yellow-300">"GET"</span>,
@@ -435,7 +461,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       <svg class="check-icon w-3.5 h-3.5 hidden text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                     </button>
                   </div>
-                  <pre id="get-device-response" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto">&#123;
+                  <pre id="get-device-response" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll">&#123;
   <span class="text-teal-300">"id"</span>: <span class="text-yellow-300">"dev_000001"</span>,
   <span class="text-teal-300">"name"</span>: <span class="text-yellow-300">"sensor-node-01"</span>,
   <span class="text-teal-300">"chip"</span>: <span class="text-yellow-300">"ESP32-WROOM-32"</span>,
@@ -463,7 +489,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     Run
                   </button>
                 </div>
-                <div id="result-get-device" class="hidden bg-slate-900 rounded-lg p-4 overflow-x-auto">
+                <div id="result-get-device" class="hidden bg-slate-900 rounded-lg p-4 h-scroll">
                   <pre class="text-xs font-mono text-slate-100 result-text"></pre>
                 </div>
               </div>
@@ -486,7 +512,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div>
                 <h4 class="font-semibold text-slate-800 mb-3">Request Body <span class="ml-2 text-xs font-normal text-slate-500 font-sans">Content-Type: application/json</span></h4>
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
-                  <table class="w-full text-xs">
+                  <div class="h-scroll">
+                  <table class="w-full text-xs min-w-[640px]">
                     <thead class="bg-slate-50">
                       <tr>
                         <th class="text-left px-4 py-3 font-semibold text-slate-600">Field</th>
@@ -522,6 +549,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       </tr>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
 
@@ -539,7 +567,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                   </div>
                   <div id="post-curl" class="tab-panel bg-slate-900">
-                    <pre id="post-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-teal-400">curl</span> -X POST <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices"</span> \
+                    <pre id="post-curl-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-teal-400">curl</span> -X POST <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices"</span> \
   -H <span class="text-yellow-300">"Authorization: Bearer YOUR_API_TOKEN"</span> \
   -H <span class="text-yellow-300">"Content-Type: application/json"</span> \
   -d <span class="text-yellow-300">'&#123;
@@ -550,7 +578,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   &#125;'</span></pre>
                   </div>
                   <div id="post-js" class="tab-panel hidden bg-slate-900">
-                    <pre id="post-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
+                    <pre id="post-js-code" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll"><span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(
   <span class="text-yellow-300">"https://api.iotfleet.example.com/v1/devices"</span>,
   &#123;
     method: <span class="text-yellow-300">"POST"</span>,
@@ -584,7 +612,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                       </button>
                     </div>
                     <!-- point 7: consistent id dev_000002 / name sensor-node-02 -->
-                    <pre id="post-response-201" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto">&#123;
+                    <pre id="post-response-201" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll">&#123;
   <span class="text-teal-300">"id"</span>: <span class="text-yellow-300">"dev_000002"</span>,
   <span class="text-teal-300">"name"</span>: <span class="text-yellow-300">"sensor-node-02"</span>,
   <span class="text-teal-300">"chip"</span>: <span class="text-yellow-300">"ESP32-WROOM-32"</span>,
@@ -605,7 +633,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                         <svg class="check-icon w-3.5 h-3.5 hidden text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                       </button>
                     </div>
-                    <pre id="post-response-400" class="px-4 py-3 text-sm font-mono text-slate-100 overflow-x-auto">&#123;
+                    <pre id="post-response-400" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll">&#123;
   <span class="text-teal-300">"error"</span>: &#123;
     <span class="text-teal-300">"code"</span>: <span class="text-red-400">"bad_request"</span>,
     <span class="text-teal-300">"message"</span>: <span class="text-yellow-300">"Field 'chip' is required."</span>
@@ -626,7 +654,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     Run
                   </button>
                 </div>
-                <div id="result-post-device" class="hidden bg-slate-900 rounded-lg p-4 overflow-x-auto">
+                <div id="result-post-device" class="hidden bg-slate-900 rounded-lg p-4 h-scroll">
                   <pre class="text-xs font-mono text-slate-100 result-text"></pre>
                 </div>
               </div>
@@ -656,7 +684,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     <svg class="check-icon w-3.5 h-3.5 hidden text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   </button>
                 </div>
-                <pre id="error-shape" class="px-4 py-3 text-sm font-mono text-slate-100">&#123;
+                <pre id="error-shape" class="px-4 py-3 text-sm font-mono text-slate-100 h-scroll">&#123;
   <span class="text-teal-300">"error"</span>: &#123;
     <span class="text-teal-300">"code"</span>: <span class="text-yellow-300">"not_found"</span>,
     <span class="text-teal-300">"message"</span>: <span class="text-yellow-300">"Device dev_000001 does not exist in this project."</span>
@@ -664,7 +692,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 &#125;</pre>
               </div>
               <div class="border border-slate-200 rounded-xl overflow-hidden">
-                <table class="w-full text-xs">
+                <div class="h-scroll">
+                <table class="w-full text-xs min-w-[680px]">
                   <thead class="bg-slate-50">
                     <tr>
                       <th class="text-left px-4 py-3 font-semibold text-slate-600">HTTP Status</th>
@@ -718,6 +747,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </tr>
                   </tbody>
                 </table>
+                </div>
               </div>
             </div>
           </section>
