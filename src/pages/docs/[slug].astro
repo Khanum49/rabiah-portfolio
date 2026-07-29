@@ -15,8 +15,14 @@ const joinPath = (...parts: string[]) => {
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
 
-  const order = ['linux-firewall', 'inter-vlan', 'esp32-overview', 'stm32-arm-cortex', 'rtos-vs-bare-metal'];
-  const sorted = docs.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug));
+  // Newest first — matches the sidebar ordering in DocsLayout.astro.
+  // A doc with no `date` frontmatter is treated as oldest, so it just
+  // falls to the bottom instead of breaking the sort.
+  const sorted = docs.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
+  });
 
   return sorted.map((doc, index) => ({
     params: { slug: doc.slug },
