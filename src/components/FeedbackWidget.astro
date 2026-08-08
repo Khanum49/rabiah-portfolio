@@ -1,0 +1,412 @@
+---
+// src/components/FeedbackWidget.astro
+interface Props {
+  page?: string;
+}
+
+const { page } = Astro.props;
+const currentPath = page ?? Astro.url.pathname;
+---
+
+<div class="feedback-widget" data-page={currentPath}>
+  <button
+    id="feedback-trigger"
+    class="feedback-trigger"
+    aria-expanded="false"
+    aria-controls="feedback-panel"
+  >
+    <svg class="feedback-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8l-4 3v-3H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="feedback-trigger-text">Was this helpful?</span>
+  </button>
+
+  <div id="feedback-panel" class="feedback-panel hidden">
+    <button id="feedback-close" class="feedback-close" aria-label="Close feedback">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+
+    <div id="feedback-step-rating" class="feedback-step">
+      <p class="feedback-question">Was this page helpful?</p>
+      <div class="feedback-rating-buttons">
+        <button class="feedback-rate-btn" data-rating="up" aria-label="Yes, helpful">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6.5 8.5v8h-2a1 1 0 01-1-1v-6a1 1 0 011-1h2zm0 0l3.5-6a1.5 1.5 0 013 1v3.5h3.28a1.5 1.5 0 011.46 1.83l-1.2 5.5a1.5 1.5 0 01-1.46 1.17H6.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Yes</span>
+        </button>
+        <button class="feedback-rate-btn" data-rating="down" aria-label="No, not helpful">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M13.5 11.5v-8h2a1 1 0 011 1v6a1 1 0 01-1 1h-2zm0 0l-3.5 6a1.5 1.5 0 01-3-1v-3.5H3.72a1.5 1.5 0 01-1.46-1.83l1.2-5.5A1.5 1.5 0 015.4 5.5h8.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>No</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="feedback-step-comment" class="feedback-step hidden">
+      <p class="feedback-question" id="feedback-comment-label">Anything you'd add?</p>
+      <textarea
+        id="feedback-comment"
+        class="feedback-textarea"
+        placeholder="Optional — what were you looking for?"
+        rows="3"
+      ></textarea>
+      <p id="feedback-error" class="feedback-error hidden">
+        Something went wrong — please try again.
+      </p>
+      <button id="feedback-submit" class="feedback-submit-btn">Send feedback</button>
+    </div>
+
+    <div id="feedback-step-done" class="feedback-step hidden">
+      <div class="feedback-done-icon">
+        <svg width="24" height="24" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 10l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="feedback-question">Thanks for the feedback!</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .feedback-widget {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .feedback-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.1rem;
+    background: linear-gradient(135deg, #0d9488, #0891b2);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .feedback-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+  }
+
+  .feedback-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .feedback-widget.open .feedback-trigger {
+    display: none;
+  }
+
+  .feedback-panel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 280px;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.18);
+    padding: 1.25rem;
+    animation: feedback-pop 0.18s ease;
+  }
+
+  .feedback-panel.hidden {
+    display: none;
+  }
+
+  @keyframes feedback-pop {
+    from { opacity: 0; transform: translateY(6px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .feedback-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 0;
+    transition: color 0.15s;
+  }
+
+  .feedback-close:hover {
+    color: #475569;
+  }
+
+  .feedback-step.hidden {
+    display: none;
+  }
+
+  .feedback-question {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 0.85rem 0;
+    padding-right: 1rem;
+  }
+
+  .feedback-rating-buttons {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .feedback-rate-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.75rem 0.5rem;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.65rem;
+    color: #475569;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+
+  .feedback-rate-btn:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+    background: #f0fdfa;
+  }
+
+  .feedback-rate-btn.selected {
+    border-color: #0d9488;
+    background: #ccfbf1;
+    color: #0f766e;
+  }
+
+  .feedback-textarea {
+    width: 100%;
+    resize: none;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 0.65rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.83rem;
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+    margin-bottom: 0.6rem;
+    transition: border-color 0.15s;
+  }
+
+  .feedback-textarea:focus {
+    outline: none;
+    border-color: #0d9488;
+  }
+
+  .feedback-error {
+    color: #dc2626;
+    font-size: 0.78rem;
+    margin: -0.2rem 0 0.6rem;
+  }
+
+  .feedback-submit-btn {
+    width: 100%;
+    padding: 0.6rem;
+    background: linear-gradient(135deg, #0d9488, #0891b2);
+    color: white;
+    border: none;
+    border-radius: 0.65rem;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .feedback-submit-btn:hover {
+    opacity: 0.92;
+  }
+
+  .feedback-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .feedback-step#feedback-step-done {
+    text-align: center;
+    padding: 0.5rem 0 0.25rem;
+  }
+
+  .feedback-done-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ccfbf1;
+    color: #0f766e;
+    border-radius: 9999px;
+  }
+
+  #feedback-step-done .feedback-question {
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    .feedback-widget {
+      bottom: 1rem;
+      right: 1rem;
+      left: 1rem;
+    }
+    .feedback-panel {
+      width: auto;
+    }
+    .feedback-trigger-text {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const WORKER_URL = 'https://doc-feedback-relay.khanum49.workers.dev';
+
+  // --- Track which heading is currently in view ---
+  // Watches every heading that has an id (h2, h3) and remembers the id
+  // of whichever one is closest to the top of the viewport. That id
+  // becomes the anchor we attach to the page path, e.g. "#harvard-architecture".
+  let currentSectionId = '';
+
+  const headings = document.querySelectorAll('h2[id], h3[id], section[id]');
+  if (headings.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            currentSectionId = entry.target.id;
+          }
+        });
+      },
+      {
+        // Fires when a heading crosses a line near the top of the
+        // viewport, rather than waiting for it to be fully visible.
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 0,
+      }
+    );
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  document.querySelectorAll('.feedback-widget').forEach((widget) => {
+    const trigger = widget.querySelector('#feedback-trigger') as HTMLButtonElement;
+    const panel = widget.querySelector('#feedback-panel') as HTMLElement;
+    const closeBtn = widget.querySelector('#feedback-close') as HTMLButtonElement;
+
+    const stepRating = widget.querySelector('#feedback-step-rating') as HTMLElement;
+    const stepComment = widget.querySelector('#feedback-step-comment') as HTMLElement;
+    const stepDone = widget.querySelector('#feedback-step-done') as HTMLElement;
+    const commentLabel = widget.querySelector('#feedback-comment-label') as HTMLElement;
+    const errorEl = widget.querySelector('#feedback-error') as HTMLElement;
+
+    const rateButtons = widget.querySelectorAll('.feedback-rate-btn');
+    const submitBtn = widget.querySelector('#feedback-submit') as HTMLButtonElement;
+    const textarea = widget.querySelector('#feedback-comment') as HTMLTextAreaElement;
+
+    let selectedRating: 'up' | 'down' | null = null;
+
+    const openPanel = () => {
+      widget.classList.add('open');
+      panel.classList.remove('hidden');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+
+    const closePanel = () => {
+      widget.classList.remove('open');
+      panel.classList.add('hidden');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+
+    const resetWidget = () => {
+      selectedRating = null;
+      textarea.value = '';
+      errorEl.classList.add('hidden');
+      rateButtons.forEach((b) => b.classList.remove('selected'));
+      stepRating.classList.remove('hidden');
+      stepComment.classList.add('hidden');
+      stepDone.classList.add('hidden');
+    };
+
+    trigger?.addEventListener('click', openPanel);
+    closeBtn?.addEventListener('click', () => {
+      closePanel();
+      setTimeout(resetWidget, 200);
+    });
+
+    rateButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        rateButtons.forEach((b) => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedRating = btn.getAttribute('data-rating') as 'up' | 'down';
+
+        commentLabel.textContent =
+          selectedRating === 'down'
+            ? "Sorry to hear that — what went wrong?"
+            : "Anything you'd add?";
+
+        stepRating.classList.add('hidden');
+        stepComment.classList.remove('hidden');
+      });
+    });
+
+    submitBtn?.addEventListener('click', async () => {
+      const basePage = widget.getAttribute('data-page') || '';
+      // Attach whichever heading was in view when the panel was opened,
+      // e.g. "/docs/stm32#harvard-architecture". Falls back to just the
+      // page path if no headings were found (short pages, api-docs, etc.)
+      const fullPage = currentSectionId ? `${basePage}#${currentSectionId}` : basePage;
+
+      const payload = {
+        page: fullPage,
+        rating: selectedRating,
+        comment: textarea.value.trim(),
+      };
+
+      errorEl.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+
+        stepComment.classList.add('hidden');
+        stepDone.classList.remove('hidden');
+
+        setTimeout(() => {
+          closePanel();
+          setTimeout(resetWidget, 200);
+        }, 1800);
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send feedback';
+        errorEl.classList.remove('hidden');
+      }
+    });
+  });
+</script>

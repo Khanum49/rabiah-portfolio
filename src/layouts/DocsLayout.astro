@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import FeedbackWidget from '../components/FeedbackWidget.astro';
 
 // Helper function to ensure proper path joining
 const joinPath = (...parts: string[]) => {
@@ -129,6 +130,7 @@ const baseUrl = import.meta.env.BASE_URL;
       <!-- Main Content -->
       <main class="flex-1 min-w-0">
         <slot />
+        <FeedbackWidget />
 
         <!-- Mobile TOC (below content on small screens) -->
         <div class="xl:hidden mt-10">
