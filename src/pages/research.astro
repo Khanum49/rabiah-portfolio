@@ -1,0 +1,553 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const joinPath = (...parts: string[]) => {
+  return parts
+    .map((part, index) => {
+      if (index > 0 && part.startsWith('/')) part = part.slice(1);
+      if (index < parts.length - 1 && part.endsWith('/')) part = part.slice(0, -1);
+      return part;
+    })
+    .join('/');
+};
+
+// Place the PDF at public/documents/state-of-ai-in-technical-writing.pdf
+const pdfUrl = joinPath(baseUrl, 'documents', 'state-of-ai-in-technical-writing.pdf');
+
+const findings = [
+  {
+    number: 1,
+    title: "AI adoption is high, but shallow",
+    finding: "~70% of teams use generative AI, primarily for drafting and summarization. Strategic use cases such as information architecture, validation, and lifecycle governance remain limited.",
+    takeaway: "Productivity theater, not durable productivity gains.",
+    implication: "Short-term speed improvements without structural advantage.",
+    stats: [{ label: "Drafting & Summarization", value: 70 }],
+  },
+  {
+    number: 2,
+    title: "Organizations are scaling AI without control systems",
+    finding: "52% of organizations do not measure AI's impact on documentation outcomes. Existing metrics are fragmented and indirect (e.g., web analytics, support signals) and lack clear baselines.",
+    takeaway: "Leaders lack visibility into ROI and risk exposure.",
+    implication: "Efficiency gains cannot be separated from hidden rework, error costs, or downstream operational impact.",
+    stats: [{ label: "Do Not Measure AI's Impact", value: 52 }],
+  },
+  {
+    number: 3,
+    title: "Accuracy risk increases as output scales",
+    finding: "Hallucinations and inconsistencies represent the primary trust barrier as AI-generated content volume grows. Validation demand increases faster than the teams' review capacity.",
+    takeaway: "AI accelerates drafting but creates validation debt.",
+    implication: "Faster creation can translate into slower releases, higher error exposure, and erosion of customer trust.",
+    stats: [],
+  },
+  {
+    number: 4,
+    title: "The constraint is organizational, not technical",
+    finding: "Top barriers to scale are team bandwidth (63%), headcount shortages (48%), and slow review workflows (33%), not tooling limitations.",
+    takeaway: "AI is optimizing the wrong bottleneck.",
+    implication: "Productivity gains are absorbed downstream by approval cycles, SME availability, and fragmented processes.",
+    stats: [
+      { label: "Team Bandwidth", value: 63 },
+      { label: "Headcount Shortages", value: 48 },
+      { label: "Slow Review Workflows", value: 33 },
+    ],
+  },
+  {
+    number: 5,
+    title: "Information architecture is the critical missing foundation",
+    finding: "Many organizations operate with fragmented, feature-driven documentation structures. Information architecture work is frequently deferred, resulting in an accumulation of content debt.",
+    takeaway: "AI inherits structural disorder.",
+    implication: "Poor structure reduces findability, consistency, reuse, and long-term scalability.",
+    stats: [],
+  },
+];
+
+const sequence = [
+  "Fix information architecture foundations",
+  "Standardize documentation workflows and validation paths",
+  "Define clear SME roles and review SLAs",
+  "Build validation capacity alongside drafting automation",
+  "Establish quarterly documentation metrics tied to business outcomes (cost, accuracy, adoption impact)",
+];
+---
+
+<BaseLayout title="Research - Rabiah Khanum">
+  <div class="page-wrapper">
+    <div class="page-card">
+
+      <!-- ── Header ── -->
+      <h1 class="page-title">Research</h1>
+      <p class="page-subtitle">
+        Original industry research I designed, ran, and analyzed, turned into an executive-ready brief.
+      </p>
+
+      <hr class="divider" />
+
+      <!-- ── Report hero ── -->
+      <section class="report-hero">
+        <span class="report-kicker">Original Research · Independently Authored</span>
+        <h2 class="report-title">The State of AI in Technical Writing: Executive Brief</h2>
+
+        <div class="report-meta">
+          <div class="report-meta-item">
+            <span class="report-meta-label">Audience</span>
+            <span class="report-meta-value">C-suite, Product &amp; Engineering Leadership</span>
+          </div>
+          <div class="report-meta-item">
+            <span class="report-meta-label">Source</span>
+            <span class="report-meta-value">Two industry surveys, 70+ technical communication leaders (primarily B2B software and enterprise technology organizations)</span>
+          </div>
+          <div class="report-meta-item">
+            <span class="report-meta-label">Fielded</span>
+            <span class="report-meta-value">Nov 2025 – Jan 2026</span>
+          </div>
+        </div>
+
+        <p class="report-desc">
+          This brief distills two survey rounds with technical communication leaders into a single question executives keep getting wrong: whether to scale AI on top of the documentation systems they already have, or fix those systems first. It was not published externally by the organization it was produced for, so I'm sharing it here as a sample of my independent research, analysis, and executive communication work.
+        </p>
+
+        <div class="report-actions">
+          <a href={pdfUrl} target="_blank" class="btn btn-primary-navy">
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+            Download the PDF
+          </a>
+          <a href="#key-findings" class="btn btn-outline-navy">Read the key findings</a>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ── Framing ── -->
+      <section class="section">
+        <h2 class="section-heading">AI Is Scaling Faster Than Documentation Governance</h2>
+        <p class="section-body">
+          AI is already embedded in documentation workflows, but most organizations are scaling it without fixing the underlying structure, governance, or measurement. As a result, AI is accelerating content production while amplifying documentation risk, operational friction, and hidden costs.
+        </p>
+        <p class="section-body">
+          Documentation performance directly affects core business outcomes. When AI scales on top of fragmented systems, organizations experience rising documentation and support costs, slower release cycles from validation bottlenecks, increased support volume, higher churn risk from poor onboarding, and burnout across the teams absorbing the rework.
+        </p>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ── Key Findings ── -->
+      <section class="section" id="key-findings">
+        <h2 class="section-heading">What's Actually Happening</h2>
+
+        <div class="findings-list">
+          {findings.map((f) => (
+            <div class="finding-card">
+              <div class="finding-head">
+                <span class="finding-number">{f.number}</span>
+                <h3 class="finding-title">{f.title}</h3>
+              </div>
+              <p class="finding-row"><strong>Finding:</strong> {f.finding}</p>
+              <p class="finding-row"><strong>Executive takeaway:</strong> {f.takeaway}</p>
+              <p class="finding-row"><strong>Implication:</strong> {f.implication}</p>
+
+              {f.stats.length > 0 && (
+                <div class="stat-bars">
+                  {f.stats.map((s) => (
+                    <div class="stat-bar-row">
+                      <span class="stat-bar-label">{s.label}</span>
+                      <div class="stat-bar-track">
+                        <div class="stat-bar-fill" style={`width: ${s.value}%`}>
+                          <span class="stat-bar-value">{s.value}%</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ── Takeaway quote ── -->
+      <div class="quote-block">
+        <p>Organizations attempting to scale AI on top of broken documentation systems experience diminishing returns, rising validation costs, and accelerated team burnout.</p>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- ── What high performers do ── -->
+      <section class="section">
+        <h2 class="section-heading">What High-Performing Organizations Do Differently</h2>
+        <p class="section-body">Before expanding AI investment, leading teams sequence their transformation:</p>
+        <ol class="sequence-list">
+          {sequence.map((step) => <li>{step}</li>)}
+        </ol>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- ── Executive Decision Frame ── -->
+      <section class="section">
+        <h2 class="section-heading">Executive Decision Frame</h2>
+        <p class="section-body">AI in documentation is no longer a tooling decision; it is a governance and system design choice.</p>
+
+        <div class="option-card">
+          <p class="option-label">Option A: Continue scaling AI tactically</p>
+          <p class="option-result">→ Higher output volume, increasing risk, unclear ROI</p>
+        </div>
+        <div class="option-card">
+          <p class="option-label">Option B: Invest first in structure and governance</p>
+          <p class="option-result">→ Slower initial gains, but durable scale, measurable value, and lower operational risk</p>
+        </div>
+      </section>
+
+      <!-- ── Bottom line quote ── -->
+      <div class="quote-block">
+        <p>AI doesn't create documentation problems; it scales them. The winners will be organizations that treat documentation as strategic infrastructure, investing first in architecture, governance, and measurement before accelerating automation.</p>
+      </div>
+
+      <div class="report-actions report-actions-footer">
+        <a href={pdfUrl} target="_blank" class="btn btn-primary-navy">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v13m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          Download the full PDF
+        </a>
+      </div>
+
+      <div class="back-link">
+        <a href={baseUrl}>← Back to Home</a>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Layout (matches Docs page) ── */
+  .page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 6.5rem 1.5rem 4rem;
+  }
+
+  .page-card {
+    max-width: 1000px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
+    padding: 3.5rem 3rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
+  }
+
+  .page-subtitle {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 1.75rem 0;
+  }
+
+  .section { margin-bottom: 0; }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+  }
+
+  /* ── Report hero ── */
+  .report-hero {
+    background: linear-gradient(135deg, #0f172a, #1e3a5f 60%, #0d5c73);
+    border-radius: 1.25rem;
+    padding: 2rem 2.25rem;
+    color: #e2e8f0;
+  }
+
+  .report-kicker {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5eead4;
+    margin-bottom: 0.75rem;
+  }
+
+  .report-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .report-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.85rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .report-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .report-meta-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #7dd3c0;
+  }
+
+  .report-meta-value {
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+  }
+
+  .report-desc {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .report-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .report-actions-footer {
+    margin-top: 2rem;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.3rem;
+    border-radius: 99px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-icon { flex-shrink: 0; }
+
+  .btn-primary-navy {
+    background: #5eead4;
+    color: #0f172a;
+  }
+
+  .btn-outline-navy {
+    background: transparent;
+    color: #e2e8f0;
+    border: 1.5px solid rgba(226, 232, 240, 0.4);
+  }
+
+  /* ── Findings ── */
+  .findings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .finding-card {
+    background: linear-gradient(135deg, #f8fafc, #f0fdf9);
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .finding-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .finding-number {
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: #0d9488;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .finding-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+  }
+
+  .finding-row {
+    font-size: 0.825rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+
+  .finding-row strong { color: #1e293b; }
+
+  .stat-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .stat-bar-row { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  .stat-bar-label {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #475569;
+  }
+
+  .stat-bar-track {
+    background: #dbeafe;
+    border-radius: 99px;
+    height: 1.5rem;
+    overflow: hidden;
+  }
+
+  .stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0d9488, #1d7fa8);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.6rem;
+    border-radius: 99px;
+    min-width: 2.5rem;
+  }
+
+  .stat-bar-value {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  /* ── Quote block ── */
+  .quote-block {
+    background: linear-gradient(135deg, #0f172a, #0d5c73);
+    border-radius: 1rem;
+    padding: 1.75rem 2rem;
+    margin: 1.75rem 0;
+  }
+
+  .quote-block p {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── Sequence list ── */
+  .sequence-list {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sequence-list li {
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  /* ── Decision options ── */
+  .option-card {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 0.85rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .option-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.3rem;
+  }
+
+  .option-result {
+    font-size: 0.825rem;
+    color: #475569;
+  }
+
+  /* ── Back link ── */
+  .back-link { margin-top: 1.5rem; }
+
+  .back-link a {
+    font-size: 0.85rem;
+    color: #0d9488;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .back-link a:hover { text-decoration: underline; }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .page-card { padding: 1.75rem 1.25rem; border-radius: 1.5rem; }
+    .report-hero { padding: 1.5rem 1.25rem; }
+    .report-title { font-size: 1.25rem; }
+    .report-actions { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+</style>
